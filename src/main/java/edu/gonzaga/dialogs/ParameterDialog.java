@@ -1,0 +1,50 @@
+/**
+ * This program plays a game of Yahtzee.
+ * CPSC 224, Spring 2022
+ * HW4
+ * No sources to cite.
+ *
+ * @author Tyler CH
+ * @version v1.0 4/7/2022
+ */
+package edu.gonzaga.dialogs;
+
+import edu.gonzaga.GameConfiguration;
+import edu.gonzaga.views.ParameterView;
+
+import javax.swing.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+/**
+ * Dialog for users to choose game settings before game.
+ */
+public class ParameterDialog extends JDialog implements PropertyChangeListener {
+
+    ParameterView content;
+
+    public ParameterDialog(JFrame frame, GameConfiguration config) {
+        super(frame,"Game Settings", true);
+        content = new ParameterView(config);
+        content.addPropertyChangeListener(this::propertyChange);
+        setContentPane(content);
+        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        setSize(250,175);
+        setResizable(false);
+    }
+
+    public ParameterDialog(JFrame frame) {
+        this(frame, new GameConfiguration());
+    }
+
+    public GameConfiguration getPayload() {
+        return content.getConfig();
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        if(evt.getPropertyName().equals("close")) {
+            setVisible(false);
+        }
+    }
+}

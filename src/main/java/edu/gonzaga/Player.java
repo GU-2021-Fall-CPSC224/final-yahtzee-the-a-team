@@ -1,0 +1,96 @@
+package edu.gonzaga;
+
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
+
+public class Player implements PropertyChangeListener {
+    private Hand hand;
+
+    private UpperScorecard upperScorecard;
+    private LowerScorecard lowerScorecard;
+
+    private GameConfiguration config;
+
+    private int turn;
+
+    private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+
+
+    public Player(GameConfiguration config) {
+        this.config = config;
+
+        hand = new Hand(config);
+        upperScorecard = new UpperScorecard(config);
+        lowerScorecard = new LowerScorecard(config);
+
+        upperScorecard.addPropertyChangeListener(this::propertyChange);
+        lowerScorecard.addPropertyChangeListener(this::propertyChange);
+    }
+
+    /**
+     * Registers a PropertyChangeListener to this class.
+     * @param listener the listener to register.
+     */
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        this.pcs.addPropertyChangeListener(listener);
+    }
+
+    /**
+     * Removes a PropertyChangeListener to this class.
+     * @param listener the listener to remove.
+     */
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        this.pcs.removePropertyChangeListener(listener);
+    }
+
+    public boolean gameOver() {
+        return upperScorecard.isFull() && lowerScorecard.isFull();
+    }
+
+    public void newTurn() {
+        hand.newTurn();
+        turn++;
+    }
+
+    public ArrayList<Scorecard> score() {
+        upperScorecard.scoreNewHand(hand);
+        lowerScorecard.scoreNewHand(hand);
+        ArrayList<Scorecard> scorecards = new ArrayList<>();
+        scorecards.add(upperScorecard);
+        scorecards.add(lowerScorecard);
+        return scorecards;
+    }
+
+    public UpperScorecard getUpperScorecard() {
+        return upperScorecard;
+    }
+
+    public void setUpperScorecard(UpperScorecard upperScorecard) {
+        this.upperScorecard = upperScorecard;
+    }
+
+    public LowerScorecard getLowerScorecard() {
+        return lowerScorecard;
+    }
+
+    public void setLowerScorecard(LowerScorecard lowerScorecard) {
+        this.lowerScorecard = lowerScorecard;
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        if(evt.getPropertyName().equals("scored") || evt.getPropertyName().equals("total")) {
+            pcs.firePropertyChange(evt.getPropertyName(), evt.getOldValue(),evt.getNewValue());
+        }
+    }
+
+    public Hand getHand() {
+        return hand;
+    }
+
+    public int getTurn() {
+        return turn;
+    }
+}

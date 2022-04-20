@@ -20,21 +20,19 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
-public class GameView extends JPanel implements PropertyChangeListener {
+public class PlayerView extends JPanel implements PropertyChangeListener {
+    private Player player;
     private CenterView centerView;
 
-    private int turn;
-
-    private Hand hand;
     private HandView handView;
 
     private JButton scoreButton;
     private JLabel turnLabel;
 
-    private LowerScorecard lowerScorecard;
+//    private LowerScorecard lowerScorecard;
     private ScorecardView lowerScorecardView;
 
-    private UpperScorecard upperScorecard;
+//    private UpperScorecard upperScorecard;
     private ScorecardView upperScorecardView;
     private JScrollPane upperScrollPane;
 
@@ -44,23 +42,26 @@ public class GameView extends JPanel implements PropertyChangeListener {
 
     /**
      * The main game class.
-     * @param config the configuration to run the game in.
      */
-    public GameView(GameConfiguration config){
+    public PlayerView(Player player){
         setLayout(new BorderLayout());
+//
+//        turn = 1;
+//        hand = new Hand(config);
 
-        turn = 1;
-        hand = new Hand(config);
+//        upperScorecard = new UpperScorecard(config);
+//        lowerScorecard = new LowerScorecard(config);
 
-        upperScorecard = new UpperScorecard(config);
-        lowerScorecard = new LowerScorecard(config);
+//        upperScorecard.addPropertyChangeListener(this::propertyChange);
+//        lowerScorecard.addPropertyChangeListener(this::propertyChange);
 
-        upperScorecard.addPropertyChangeListener(this::propertyChange);
-        lowerScorecard.addPropertyChangeListener(this::propertyChange);
+        this.player = player;
 
-        handView = new HandView(hand, false);
-        upperScorecardView = new ScorecardView(upperScorecard, "Upper Scorecard");
-        lowerScorecardView = new ScorecardView(lowerScorecard, "Lower Scorecard");
+        player.addPropertyChangeListener(this::propertyChange);
+
+        handView = new HandView(player.getHand(), false);
+        upperScorecardView = new ScorecardView(player.getUpperScorecard(), "Upper Scorecard");
+        lowerScorecardView = new ScorecardView(player.getLowerScorecard(), "Lower Scorecard");
 
         upperScrollPane = new JScrollPane(upperScorecardView);
         upperScrollPane.setPreferredSize(new Dimension(250, 316));
@@ -86,18 +87,17 @@ public class GameView extends JPanel implements PropertyChangeListener {
     public void propertyChange(PropertyChangeEvent evt) { //Advance turn.
         if(evt.getPropertyName().equals("scored")) {
             scoringDialog.setVisible(false);
-            turn++;
-            turnLabel.setText("Turn: " + turn);
-            hand.newTurn();
+            turnLabel.setText("Turn: " + player.getTurn());
+            player.newTurn();
             handView.getRollButton().setEnabled(true);
         } else if(evt.getPropertyName().equals("total")) {
-            if(lowerScorecard.isFull() && upperScorecard.isFull()) {
-                turnLabel.setText("GAME OVER!");
-                handView.getRollButton().setEnabled(false);
-                scoreButton.setEnabled(false);
-                totalLabel.getComponent().setBackground(Color.GREEN);
-            }
-            int total = upperScorecard.getTotalLine().getValue() + lowerScorecard.getTotalLine().getValue();
+//            if(player.gameOver()) {
+//                turnLabel.setText("GAME OVER!");
+//                handView.getRollButton().setEnabled(false);
+//                scoreButton.setEnabled(false);
+//                totalLabel.getComponent().setBackground(Color.GREEN);
+//            }
+            int total = player.getUpperScorecard().getTotalLine().getValue() + player.getLowerScorecard().getTotalLine().getValue();
             ((JTextField)totalLabel.getComponent()).setText("" + total);
         }
     }
@@ -122,11 +122,7 @@ public class GameView extends JPanel implements PropertyChangeListener {
             scoreButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    upperScorecard.scoreNewHand(hand);
-                    lowerScorecard.scoreNewHand(hand);
-                    ArrayList<Scorecard> scorecards = new ArrayList<>();
-                    scorecards.add(upperScorecard);
-                    scorecards.add(lowerScorecard);
+                    ArrayList<Scorecard> scorecards = player.score();
                     scoringDialog.setContentPane(new ScorecardView(scorecards, true, "Scoring"));
                     scoringDialog.setSize(600,500);
                     scoringDialog.setVisible(true);

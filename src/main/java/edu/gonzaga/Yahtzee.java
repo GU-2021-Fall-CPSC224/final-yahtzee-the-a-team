@@ -11,7 +11,7 @@
 package edu.gonzaga;
 
 import edu.gonzaga.dialogs.ParameterDialog;
-import edu.gonzaga.views.GameView;
+import edu.gonzaga.views.PlayerView;
 
 import javax.swing.*;
 
@@ -29,8 +29,9 @@ public class Yahtzee {
 
 
         if(config != null){
-            GameView gameView = new GameView(config);
-            frame.setContentPane(gameView);
+            Player player = new Player(config);
+            PlayerView playerView = new PlayerView(player);
+            frame.setContentPane(playerView);
             frame.setVisible(true);
         }
 

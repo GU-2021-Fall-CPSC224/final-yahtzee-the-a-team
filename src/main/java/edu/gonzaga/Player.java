@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class Player implements PropertyChangeListener {
     private Hand hand;
+    private String name;
 
     private UpperScorecard upperScorecard;
     private LowerScorecard lowerScorecard;
@@ -18,7 +19,8 @@ public class Player implements PropertyChangeListener {
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
 
-    public Player(GameConfiguration config) {
+    public Player(String name, GameConfiguration config) {
+        this.name = name;
         this.config = config;
 
         hand = new Hand(config);
@@ -45,15 +47,26 @@ public class Player implements PropertyChangeListener {
         this.pcs.removePropertyChangeListener(listener);
     }
 
+    /**
+     * Tells if this player has their scorecard full or not.
+     * @return
+     */
     public boolean gameOver() {
         return upperScorecard.isFull() && lowerScorecard.isFull();
     }
 
+    /**
+     * Advanced the turn for this player.
+     */
     public void newTurn() {
         hand.newTurn();
         turn++;
     }
 
+    /**
+     * Scores the players current hand
+     * @return the scorecard with the new scored values in it.
+     */
     public ArrayList<Scorecard> score() {
         upperScorecard.scoreNewHand(hand);
         lowerScorecard.scoreNewHand(hand);
@@ -92,5 +105,9 @@ public class Player implements PropertyChangeListener {
 
     public int getTurn() {
         return turn;
+    }
+
+    public String getName() {
+        return name;
     }
 }

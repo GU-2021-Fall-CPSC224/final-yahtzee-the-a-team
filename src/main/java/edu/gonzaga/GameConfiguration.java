@@ -9,6 +9,8 @@
  */
 package edu.gonzaga;
 
+import java.util.ArrayList;
+
 /**
  * Represents the game configuration values.
  */

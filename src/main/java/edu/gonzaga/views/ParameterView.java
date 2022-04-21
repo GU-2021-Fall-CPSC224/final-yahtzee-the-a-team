@@ -17,7 +17,7 @@ import java.awt.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class ParameterView extends JPanel {
+public class ParameterView extends JPanel{
     private final Integer[] sideChoices = {6,8,12};
     private final Integer[] handSizeChoices = {5,6,7};
     private final Integer[] numRollsChoices = {1,2,3,4,5,6,7,8,9,10};
@@ -112,6 +112,7 @@ public class ParameterView extends JPanel {
     public GameConfiguration getConfig() {
         return config;
     }
+
 
     /**
      * OK and Cancel buttons.

@@ -19,11 +19,11 @@ import java.beans.PropertyChangeListener;
 /**
  * Dialog for users to choose game settings before game.
  */
-public class ParameterDialog extends JDialog implements PropertyChangeListener {
+public class ConfigurationDialog extends JDialog implements PropertyChangeListener {
 
     ParameterView content;
 
-    public ParameterDialog(JFrame frame, GameConfiguration config) {
+    public ConfigurationDialog(JFrame frame, GameConfiguration config) {
         super(frame,"Game Settings", true);
         content = new ParameterView(config);
         content.addPropertyChangeListener(this::propertyChange);
@@ -33,7 +33,7 @@ public class ParameterDialog extends JDialog implements PropertyChangeListener {
         setResizable(false);
     }
 
-    public ParameterDialog(JFrame frame) {
+    public ConfigurationDialog(JFrame frame) {
         this(frame, new GameConfiguration());
     }
 

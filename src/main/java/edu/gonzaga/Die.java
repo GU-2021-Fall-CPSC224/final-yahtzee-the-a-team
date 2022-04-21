@@ -14,8 +14,6 @@ package edu.gonzaga;
 * Class for a Die used in Yahtzee.
 */
 
-import edu.gonzaga.dialogs.ParameterDialog;
-
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.Random;

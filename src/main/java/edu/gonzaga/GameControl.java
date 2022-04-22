@@ -24,10 +24,14 @@ import java.util.ArrayList;
 
 public class GameControl implements PropertyChangeListener
 {
+
+    private ArrayList<String> names;
+    private ArrayList<PlayerView> playerViews;
     private int playerTurn = 0;
+    private JFrame frame = new JFrame();
+    
     public GameControl()
     {
-        JFrame frame = new JFrame();
         frame.setSize(854, 480);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -41,28 +45,40 @@ public class GameControl implements PropertyChangeListener
             PlayerDialog playerDialog = new PlayerDialog(frame);
             playerDialog.setVisible(true);
     
-            ArrayList<String> names = playerDialog.getPayload();
+            names = playerDialog.getPayload();
             if(names.size() > 0) {
                 ArrayList<Player> players = new ArrayList<>();
                 for(String s : names) {
                     players.add(new Player(s, config));
                 }
     
-                ArrayList<PlayerView> views = new ArrayList<>();
+                playerViews = new ArrayList<>();
                 for(Player player : players) {
                     PlayerView playerView = new PlayerView(player);
                     playerView.addPropertyChangeListener(this::propertyChange);
-                    views.add(playerView);
+                    playerViews.add(playerView);
                 }
-                //To make multiple players turns set content pane to player view.
-                if(playerTurn >= views.size())
-                {
-                    playerTurn = 0;
-                }
-                frame.setContentPane(views.get(playerTurn));
-                frame.setVisible(true);
+                startNextPlayerRound();
             }
         }
+    }
+
+    /**
+    * @Author Joshua Venable
+    * @Date created: 4/22/22;
+    * Date last modified: 4/22/22
+    * @Description makes the next player's content pane visible
+    * @pre previously visible player content pane
+    * @post invisible previous player content pane, visible current player content pane
+    **/
+    private void startNextPlayerRound(){
+        if(playerTurn >= playerViews.size())
+        {
+            playerTurn = 0;
+        }
+        frame.setVisible(false);
+        frame.setContentPane(playerViews.get(playerTurn));
+        frame.setVisible(true);
     }
 
     @Override
@@ -71,6 +87,7 @@ public class GameControl implements PropertyChangeListener
         if(evt.getPropertyName().equals("nextPlayer"))
         {
             playerTurn++;
+            startNextPlayerRound();
         }
     }
 }

@@ -49,15 +49,6 @@ public class PlayerView extends JPanel implements PropertyChangeListener {
      */
     public PlayerView(Player player){
         setLayout(new BorderLayout());
-//
-//        turn = 1;
-//        hand = new Hand(config);
-
-//        upperScorecard = new UpperScorecard(config);
-//        lowerScorecard = new LowerScorecard(config);
-
-//        upperScorecard.addPropertyChangeListener(this::propertyChange);
-//        lowerScorecard.addPropertyChangeListener(this::propertyChange);
 
         this.player = player;
 
@@ -97,14 +88,11 @@ public class PlayerView extends JPanel implements PropertyChangeListener {
             player.newTurn();
             turnLabel.setText("Turn: " + player.getTurn());
             handView.getRollButton().setEnabled(true);
-        } else if(evt.getPropertyName().equals("total")) {
-        //    if(player.gameOver()) {
-        //        turnLabel.setText("GAME OVER!");
-        //        handView.getRollButton().setEnabled(false);
-        //        scoreButton.setEnabled(false);
-        //        totalLabel.getComponent().setBackground(Color.GREEN);
-        //    }
-            int total = player.getUpperScorecard().getTotalLine().getValue() + player.getLowerScorecard().getTotalLine().getValue();
+        } 
+        else if(evt.getPropertyName().equals("total")) {
+            int upperTotal = player.getUpperScorecard().getTotalLine().getValue();
+            int lowerTotal = player.getLowerScorecard().getTotalLine().getValue();
+            int total = upperTotal + lowerTotal;
             ((JTextField)totalLabel.getComponent()).setText("" + total);
         }
     }
@@ -114,8 +102,8 @@ public class PlayerView extends JPanel implements PropertyChangeListener {
      */
     private class CenterView extends JPanel {
         private JLabel logo;
-
         private JPanel bottomButtons;
+        private JPanel namePanel = new JPanel();
 
         public CenterView() {
             setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -140,7 +128,9 @@ public class PlayerView extends JPanel implements PropertyChangeListener {
             bottomButtons = new JPanel();
 
             add(logo);
-            add(turnLabel);
+            namePanel.add(new JLabel(player.getName()), BorderLayout.WEST);
+            namePanel.add(turnLabel, BorderLayout.EAST);
+            add(namePanel);
             add(handView);
             bottomButtons.add(handView.getRollButton());
             bottomButtons.add(scoreButton);

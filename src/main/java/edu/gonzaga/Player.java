@@ -22,6 +22,8 @@ public class Player implements PropertyChangeListener {
     public Player(String name, GameConfiguration config) {
         this.name = name;
         this.config = config;
+        
+        turn = 1;
 
         hand = new Hand(config);
         upperScorecard = new UpperScorecard(config);

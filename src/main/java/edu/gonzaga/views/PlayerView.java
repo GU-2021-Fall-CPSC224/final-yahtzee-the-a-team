@@ -94,8 +94,8 @@ public class PlayerView extends JPanel implements PropertyChangeListener {
             // Here is where the next player's turn should start 
             this.pcs.firePropertyChange("nextPlayer", false, true);
             scoringDialog.setVisible(false);
-            turnLabel.setText("Turn: " + player.getTurn());
             player.newTurn();
+            turnLabel.setText("Turn: " + player.getTurn());
             handView.getRollButton().setEnabled(true);
         } else if(evt.getPropertyName().equals("total")) {
         //    if(player.gameOver()) {

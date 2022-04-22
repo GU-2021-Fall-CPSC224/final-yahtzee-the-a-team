@@ -18,6 +18,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 
 public class PlayerView extends JPanel implements PropertyChangeListener {
@@ -39,6 +40,9 @@ public class PlayerView extends JPanel implements PropertyChangeListener {
     private LabeledComponent totalLabel;
 
     private JDialog scoringDialog;
+
+
+    private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
     /**
      * The main game class.
@@ -86,17 +90,20 @@ public class PlayerView extends JPanel implements PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent evt) { //Advance turn.
         if(evt.getPropertyName().equals("scored")) {
+            //TODO: Create Next player's turn
+            // Here is where the next player's turn should start 
+            this.pcs.firePropertyChange("nextPlayer", false, true);
             scoringDialog.setVisible(false);
             turnLabel.setText("Turn: " + player.getTurn());
             player.newTurn();
             handView.getRollButton().setEnabled(true);
         } else if(evt.getPropertyName().equals("total")) {
-//            if(player.gameOver()) {
-//                turnLabel.setText("GAME OVER!");
-//                handView.getRollButton().setEnabled(false);
-//                scoreButton.setEnabled(false);
-//                totalLabel.getComponent().setBackground(Color.GREEN);
-//            }
+        //    if(player.gameOver()) {
+        //        turnLabel.setText("GAME OVER!");
+        //        handView.getRollButton().setEnabled(false);
+        //        scoreButton.setEnabled(false);
+        //        totalLabel.getComponent().setBackground(Color.GREEN);
+        //    }
             int total = player.getUpperScorecard().getTotalLine().getValue() + player.getLowerScorecard().getTotalLine().getValue();
             ((JTextField)totalLabel.getComponent()).setText("" + total);
         }
@@ -141,5 +148,21 @@ public class PlayerView extends JPanel implements PropertyChangeListener {
             add(totalLabel);
 
         }
+    }
+
+    /**
+     * Registers a PropertyChangeListener to this class.
+     * @param listener the listener to register.
+     */
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        this.pcs.addPropertyChangeListener(listener);
+    }
+
+    /**
+     * Removes a PropertyChangeListener to this class.
+     * @param listener the listener to remove.
+     */
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        this.pcs.removePropertyChangeListener(listener);
     }
 }

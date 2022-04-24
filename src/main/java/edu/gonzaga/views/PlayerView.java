@@ -86,7 +86,9 @@ public class PlayerView extends JPanel implements PropertyChangeListener {
             this.pcs.firePropertyChange("nextPlayer", false, true);
             scoringDialog.setVisible(false);
             player.newTurn();
-            turnLabel.setText("Turn: " + player.getTurn());
+            if(!turnLabel.getText().equals("GAME OVER!")) {
+                turnLabel.setText("Turn: " + player.getTurn());
+            }
             handView.getRollButton().setEnabled(true);
         } 
         else if(evt.getPropertyName().equals("total")) {
@@ -95,6 +97,18 @@ public class PlayerView extends JPanel implements PropertyChangeListener {
             int total = upperTotal + lowerTotal;
             ((JTextField)totalLabel.getComponent()).setText("" + total);
         }
+    }
+
+    /**
+     * @Author Tyler CH
+     * @Date created: 4/24/22;
+     * Date last modified: 4/24/22
+     * @Description returns the player that this view models
+     * @pre
+     * @post
+     **/
+    public Player getPlayer() {
+        return player;
     }
 
     /**
@@ -138,6 +152,19 @@ public class PlayerView extends JPanel implements PropertyChangeListener {
             add(totalLabel);
 
         }
+    }
+
+    /**
+     * @Author Tyler CH
+     * @Date created: 4/24/22;
+     * Date last modified: 4/24/22
+     * @Description Sets this view to the form of a winnner view.
+     * @pre
+     * @post
+     **/
+    public void setWinnerView() {
+        turnLabel.setText("GAME OVER!");
+        totalLabel.getComponent().setBackground(Color.green);
     }
 
     /**

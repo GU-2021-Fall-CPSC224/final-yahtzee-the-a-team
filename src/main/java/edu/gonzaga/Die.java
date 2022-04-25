@@ -170,22 +170,17 @@ public class Die implements Comparable<Die> {
         return this.sideUp.toString();
     }
 
-    /**
-     * Makes two dice comparable using <, ==, >, etc. based on sideUp values.
-     *
-     * @param otherDie The die we're comparing to this one (two objects)
-     * @return int -1, 0, 1 for less than, equal, greater than
-     */
+    
+    @Override
     /**
      * @Author Tyler C
      * @Date created: 4/20/22;
-     *       Date last modified: 4/20/22
+     *  Date last modified: 4/20/22
      * @Description makes two dice comparable using <, ==, >, etc. based on sideUp
      *              values. Based upon {@link Comparable#compareTo(Object)}
      * @param otherDie Another Die object being compared to
      * @return An Integer (-1 : less than, 0 : equal to, 1 : greater than)
      **/
-    @Override
     public int compareTo(Die otherDie) {
         return this.sideUp.compareTo(otherDie.sideUp);
     }

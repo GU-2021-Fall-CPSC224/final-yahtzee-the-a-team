@@ -66,7 +66,10 @@ public class ScorecardLine {
     }
 
     /**
-     * Score the temp calculated value in this scorecard.
+     * If the line has already been scored, throw an exception. Otherwise, set the
+     * scored variable to true and fire a property change event
+     * 
+     * @exception IllegalStateException()
      */
     public void score() {
         if (scored) {
@@ -98,9 +101,9 @@ public class ScorecardLine {
     }
 
     /**
-     * Sets a new value and triggers an event.
+     * If the new {@link ScorecardLine} value is different than the old value, then fire a property change event.
      * 
-     * @param value the new value to set.
+     * @param value The name of the property.
      */
     public void setValueWithEvent(int value) {
         int oldValue = this.value;

@@ -100,7 +100,7 @@ public class Hand {
     }
 
     /**
-     * Unlocks all die and rolls for new turn. Sends "newturn" property change.
+     * This function unlocks all the dice, rolls them, and then fires a property change event "newturn".
      */
     public void newTurn() {
         unlockAllDie();
@@ -109,9 +109,9 @@ public class Hand {
     }
 
     /**
-     * Gets the current list of dice in the hand.
-     *
-     * @return the list of dice.
+     * This function returns a list of dice
+     * 
+     * @return The dice list.
      */
     public final List<Die> getDice() {
         return dice;

@@ -29,6 +29,7 @@ public class PlayerView extends JPanel implements PropertyChangeListener {
 
     private JButton scoreButton;
     private JLabel turnLabel;
+    private JLabel nameLabel;
 
 //    private LowerScorecard lowerScorecard;
     private ScorecardView lowerScorecardView;
@@ -81,12 +82,10 @@ public class PlayerView extends JPanel implements PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent evt) { //Advance turn.
         if(evt.getPropertyName().equals("scored")) {
-            //TODO: Create Next player's turn
-            // Here is where the next player's turn should start 
             this.pcs.firePropertyChange("nextPlayer", false, true);
             scoringDialog.setVisible(false);
             player.newTurn();
-            if(!turnLabel.getText().equals("GAME OVER!")) {
+            if(!turnLabel.getText().contains("GAME OVER!")) {
                 turnLabel.setText("Turn: " + player.getTurn());
             }
             handView.getRollButton().setEnabled(true);
@@ -142,7 +141,8 @@ public class PlayerView extends JPanel implements PropertyChangeListener {
             bottomButtons = new JPanel();
 
             add(logo);
-            namePanel.add(new JLabel(player.getName()), BorderLayout.WEST);
+            nameLabel = new JLabel(player.getName());
+            namePanel.add(nameLabel, BorderLayout.WEST);
             namePanel.add(turnLabel, BorderLayout.EAST);
             add(namePanel);
             add(handView);
@@ -163,8 +163,11 @@ public class PlayerView extends JPanel implements PropertyChangeListener {
      * @post
      **/
     public void setWinnerView() {
-        turnLabel.setText("GAME OVER!");
+        nameLabel.setVisible(false);
+        turnLabel.setText("GAME OVER! " + player.getName() + " wins!" );
         totalLabel.getComponent().setBackground(Color.green);
+        handView.getRollButton().setEnabled(false);
+        scoreButton.setEnabled(false);
     }
 
     /**

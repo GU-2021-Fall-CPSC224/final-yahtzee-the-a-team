@@ -153,6 +153,7 @@ public class GameControl implements PropertyChangeListener
         for(Player player : players) {
             if(player.totalScore() > total) {
                 winner = player;
+                total = player.totalScore();
             }
         }
         return winner;

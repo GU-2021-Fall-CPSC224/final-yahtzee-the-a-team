@@ -40,19 +40,23 @@ public class GameControl implements PropertyChangeListener
         dialog.setVisible(true);
         GameConfiguration config = dialog.getPayload();
     
-    
+        // if the config panel exists
         if(config != null){
             PlayerDialog playerDialog = new PlayerDialog(frame);
             playerDialog.setVisible(true);
     
             names = playerDialog.getPayload();
-            if(names.size() > 0) {
+
+            //if there are names in the list to make players
+            if(!names.isEmpty()) {
                 ArrayList<Player> players = new ArrayList<>();
                 for(String s : names) {
                     players.add(new Player(s, config));
                 }
     
                 playerViews = new ArrayList<>();
+
+                // add propertyChangeListeners to players so they can see if player changes
                 for(Player player : players) {
                     PlayerView playerView = new PlayerView(player);
                     playerView.addPropertyChangeListener(this::propertyChange);

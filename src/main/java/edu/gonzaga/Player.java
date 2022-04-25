@@ -101,14 +101,29 @@ public class Player implements PropertyChangeListener {
         }
     }
 
+    /**
+     * This function returns the hand of the player
+     * 
+     * @return The hand object.
+     */
     public Hand getHand() {
         return hand;
     }
 
+    /**
+     * This function returns the turn of the player
+     * 
+     * @return The turn variable is being returned.
+     */
     public int getTurn() {
         return turn;
     }
 
+    /**
+     * This function returns the name of the person
+     * 
+     * @return The name of the person.
+     */
     public String getName() {
         return name;
     }

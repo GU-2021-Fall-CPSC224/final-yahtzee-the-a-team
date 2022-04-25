@@ -28,11 +28,18 @@ public class DiceImages {
         }
     }
 
+    
     public DiceImages(String imagesPath) {
         images = new ArrayList<>(12);
         loadImages(imagesPath);
     }
 
+    /**
+     * This function returns the image of the die that corresponds to the die value
+     * 
+     * @param dieValue The value of the die.
+     * @return The image of the die.
+     */
     public ImageIcon getDieImage(int dieValue) {
         return images.get(dieValue);
     }

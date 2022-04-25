@@ -29,5 +29,45 @@ class HandTest {
             assertEquals(expectedValue, die.isLocked());
         }
     }
+
+    @Test
+    void testGetDice() {
+        
+    }
+
+    @Test
+    void testGetHandSize() {
+        
+    }
+
+    @Test
+    void testMaxRollsPerTurn() {
+        
+    }
+
+    @Test
+    void testNewTurn() {
+        
+    }
+
+    @Test
+    void testRemovePropertyChangeListener() {
+        
+    }
+
+    @Test
+    void testRollAll() {
+        
+    }
+
+    @Test
+    void testSetHand() {
+        
+    }
+
+    @Test
+    void testUnlockAllDie() {
+        
+    }
 }
 

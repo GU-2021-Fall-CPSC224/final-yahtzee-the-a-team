@@ -4,17 +4,16 @@ import edu.gonzaga.Player;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 
-public class PlayerListView extends JPanel {
+public class PlayerListView extends JPanel{
     private JList<String> players;
     private DefaultListModel<String> playersModel;
 
-    private JButton addButton;
+    private AddButton addButton;
     private JButton removeButton;
     private JButton okButton;
     private JTextField nameField;
@@ -27,7 +26,7 @@ public class PlayerListView extends JPanel {
 
         playersModel = new DefaultListModel<>();
         players = new JList<>(playersModel);
-        addButton = new JButton("Add");
+        addButton = new AddButton("Add");
         removeButton = new JButton("Remove");
         okButton = new JButton("OK");
         nameField = new JTextField();
@@ -43,7 +42,6 @@ public class PlayerListView extends JPanel {
                 }
             }
         });
-
         removeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -98,4 +96,33 @@ public class PlayerListView extends JPanel {
         }
         return players;
     }
+
+    private class AddButton extends JButton implements KeyListener{
+
+        public AddButton(String string) {
+            super(string);
+        }
+
+        @Override
+        public void keyTyped(KeyEvent e) {
+            // Nothing, must implement for KeyListener 
+            System.out.println("Key pressed 1");
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            if(e.getKeyCode() == KeyEvent.VK_ENTER)
+            {
+                System.out.println("Key pressed 2");
+                this.doClick();
+            }
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+            // Nothing, must implement for KeyListener      
+            System.out.println("Key pressed 3");    
+        }
+    }
 }
+

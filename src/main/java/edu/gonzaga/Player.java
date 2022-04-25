@@ -9,8 +9,8 @@ public class Player implements PropertyChangeListener {
     private Hand hand;
     private String name;
 
-    private UpperScoreCard upperScorecard;
-    private LowerScoreCard lowerScorecard;
+    private UpperScorecard upperScorecard;
+    private LowerScorecard lowerScorecard;
 
     private GameConfiguration config;
 
@@ -26,8 +26,8 @@ public class Player implements PropertyChangeListener {
         turn = 1;
 
         hand = new Hand(config);
-        upperScorecard = new UpperScoreCard(config);
-        lowerScorecard = new LowerScoreCard(config);
+        upperScorecard = new UpperScorecard(config);
+        lowerScorecard = new LowerScorecard(config);
 
         upperScorecard.addPropertyChangeListener(this::propertyChange);
         lowerScorecard.addPropertyChangeListener(this::propertyChange);
@@ -78,19 +78,19 @@ public class Player implements PropertyChangeListener {
         return scorecards;
     }
 
-    public UpperScoreCard getUpperScorecard() {
+    public UpperScorecard getUpperScorecard() {
         return upperScorecard;
     }
 
-    public void setUpperScorecard(UpperScoreCard upperScorecard) {
+    public void setUpperScorecard(UpperScorecard upperScorecard) {
         this.upperScorecard = upperScorecard;
     }
 
-    public LowerScoreCard getLowerScorecard() {
+    public LowerScorecard getLowerScorecard() {
         return lowerScorecard;
     }
 
-    public void setLowerScorecard(LowerScoreCard lowerScorecard) {
+    public void setLowerScorecard(LowerScorecard lowerScorecard) {
         this.lowerScorecard = lowerScorecard;
     }
 

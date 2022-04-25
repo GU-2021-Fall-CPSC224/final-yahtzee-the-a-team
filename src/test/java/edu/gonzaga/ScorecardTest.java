@@ -11,14 +11,14 @@ class ScorecardTest {
     @Test
     void testDefaultIsFull() {
         boolean expectedValue = false;
-        Scorecard scorecard = new UpperScoreCard(new GameConfiguration());
+        Scorecard scorecard = new UpperScorecard(new GameConfiguration());
         assertEquals(expectedValue, scorecard.isFull());
     }
 
     @Test
     void testIsFullUpper(){
         boolean expectedValue = true;
-        Scorecard scorecard = new UpperScoreCard(new GameConfiguration());
+        Scorecard scorecard = new UpperScorecard(new GameConfiguration());
         for(ScorecardLine line : scorecard.getLines()){
             line.score();
         }
@@ -28,7 +28,7 @@ class ScorecardTest {
     @Test
     void testNotIsFullUpper() {
         boolean expectedValue = false;
-        Scorecard scorecard = new UpperScoreCard(new GameConfiguration());
+        Scorecard scorecard = new UpperScorecard(new GameConfiguration());
         ArrayList<ScorecardLine> lines = scorecard.getLines();
         for(int i = 0; i<lines.size()-1; i++) {
             lines.get(i).score();
@@ -39,7 +39,7 @@ class ScorecardTest {
     @Test
     void testIsFullLower(){
         boolean expectedValue = true;
-        Scorecard scorecard = new LowerScoreCard(new GameConfiguration());
+        Scorecard scorecard = new LowerScorecard(new GameConfiguration());
         for(ScorecardLine line : scorecard.getLines()){
             line.score();
         }

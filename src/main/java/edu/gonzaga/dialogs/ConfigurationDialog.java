@@ -28,7 +28,8 @@ public class ConfigurationDialog extends JDialog implements PropertyChangeListen
         content = new ParameterView(config);
         content.addPropertyChangeListener(this::propertyChange);
         setContentPane(content);
-        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setSize(250,175);
         setResizable(false);
     }

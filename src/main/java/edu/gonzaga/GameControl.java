@@ -34,7 +34,8 @@ public class GameControl implements PropertyChangeListener
     {
         frame.setSize(854, 480);
         frame.setResizable(false);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     
         ConfigurationDialog dialog = new ConfigurationDialog(frame);
         dialog.setVisible(true);
@@ -46,7 +47,7 @@ public class GameControl implements PropertyChangeListener
             playerDialog.setVisible(true);
     
             names = playerDialog.getPayload();
-            if(names.size() > 0) {
+            if(!names.isEmpty()) {
                 ArrayList<Player> players = new ArrayList<>();
                 for(String s : names) {
                     players.add(new Player(s, config));

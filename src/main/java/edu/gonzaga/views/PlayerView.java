@@ -67,6 +67,7 @@ public class PlayerView extends JPanel implements PropertyChangeListener {
         totalLabel = new LabeledComponent("Total Score ", field);
 
         scoringDialog = new JDialog((JFrame)this.getParent(), true);
+        scoringDialog.setLocationRelativeTo(null);
         centerView = new CenterView();
 
         add(upperScrollPane, BorderLayout.WEST);

@@ -17,7 +17,8 @@ public class PlayerDialog extends JDialog implements PropertyChangeListener {
         content = new PlayerListView();
         content.addPropertyChangeListener(this::propertyChange);
         setContentPane(content);
-        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setSize(500,400);
         setResizable(false);
     }

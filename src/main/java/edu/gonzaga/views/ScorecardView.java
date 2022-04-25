@@ -11,6 +11,7 @@ package edu.gonzaga.views;
 
 import edu.gonzaga.Scorecard;
 import edu.gonzaga.ScorecardLine;
+import edu.gonzaga.UpperScorecard;
 
 import javax.swing.*;
 import java.awt.*;

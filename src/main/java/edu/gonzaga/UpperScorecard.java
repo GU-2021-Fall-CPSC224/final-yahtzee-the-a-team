@@ -13,14 +13,14 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UpperScoreCard extends Scorecard {
+public class UpperScorecard extends Scorecard {
 
     private final String[] titles = {
             "Aces", "Twos", "Threes", "Fours", "Fives", "Sixes",
             "Sevens", "Eights", "Nines", "Tens", "Elevens", "Twelves"
     };
 
-    public UpperScoreCard(GameConfiguration config){
+    public UpperScorecard(GameConfiguration config){
         super(config);
 
         for(int i = 0; i<config.getNumDieSides(); i++){

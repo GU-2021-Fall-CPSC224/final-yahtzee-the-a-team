@@ -20,7 +20,7 @@ public class LowerScorecardTest {
     
     @Test
     void testNameInit(){
-        LowerScoreCard scorecard = new LowerScoreCard(new GameConfiguration());
+        LowerScorecard scorecard = new LowerScorecard(new GameConfiguration());
         ArrayList<ScorecardLine> lines = scorecard.getLines();
         for(int i = 0; i<titles.length; i++){
             assertEquals(titles[i], lines.get(i).getTitle());
@@ -29,7 +29,7 @@ public class LowerScorecardTest {
 
     @Test
     void testIdInit(){
-        LowerScoreCard scorecard = new LowerScoreCard(new GameConfiguration());
+        LowerScorecard scorecard = new LowerScorecard(new GameConfiguration());
         ArrayList<ScorecardLine> lines = scorecard.getLines();
         for(int i = 0; i<ids.length; i++){
             assertEquals(ids[i], lines.get(i).getIdentifier());
@@ -40,7 +40,7 @@ public class LowerScorecardTest {
     void testValueInit(){
         int expected = 0;
 
-        LowerScoreCard scorecard = new LowerScoreCard(new GameConfiguration());
+        LowerScorecard scorecard = new LowerScorecard(new GameConfiguration());
         ArrayList<ScorecardLine> lines = scorecard.getLines();
         for(int i = 0; i<lines.size(); i++){
             assertEquals(expected, lines.get(i).getValue());
@@ -74,7 +74,7 @@ public class LowerScorecardTest {
         dice.add(new Die(dieSides,20));
         dice.add(new Die(dieSides,29));
         hand.setHand(dice);
-        LowerScoreCard card = new LowerScoreCard(config);
+        LowerScorecard card = new LowerScorecard(config);
         card.scoreNewHand(hand);
         assertEquals(expectedValue, card.getLine("3k").getValue());
     }
@@ -100,7 +100,7 @@ public class LowerScorecardTest {
         dice.add(new Die(dieSides,10));
         dice.add(new Die(dieSides,29));
         hand.setHand(dice);
-        LowerScoreCard card = new LowerScoreCard(config);
+        LowerScorecard card = new LowerScorecard(config);
         card.scoreNewHand(hand);
         assertEquals(expectedValue, card.getLine("3k").getValue());
         assertEquals(expectedValue, card.getLine("4k").getValue());
@@ -128,7 +128,7 @@ public class LowerScorecardTest {
         dice.add(new Die(dieSides,10));
         dice.add(new Die(dieSides,29));
         hand.setHand(dice);
-        LowerScoreCard card = new LowerScoreCard(config);
+        LowerScorecard card = new LowerScorecard(config);
         card.scoreNewHand(hand);
         assertEquals(expectedValue, card.getLine("3k").getValue());
         assertEquals(expectedValue, card.getLine("4k").getValue());
@@ -156,7 +156,7 @@ public class LowerScorecardTest {
         dice.add(new Die(dieSides,21));
         dice.add(new Die(dieSides,29));
         hand.setHand(dice);
-        LowerScoreCard card = new LowerScoreCard(config);
+        LowerScorecard card = new LowerScorecard(config);
         card.scoreNewHand(hand);
         assertEquals(expectedValue, card.getLine("fh").getValue());
     }
@@ -182,7 +182,7 @@ public class LowerScorecardTest {
         dice.add(new Die(dieSides,20));
         dice.add(new Die(dieSides,29));
         hand.setHand(dice);
-        LowerScoreCard card = new LowerScoreCard(config);
+        LowerScorecard card = new LowerScorecard(config);
         card.scoreNewHand(hand);
         assertEquals(expectedValue, card.getLine("ss").getValue());
     }
@@ -209,7 +209,7 @@ public class LowerScorecardTest {
         dice.add(new Die(dieSides,20));
         dice.add(new Die(dieSides,29));
         hand.setHand(dice);
-        LowerScoreCard card = new LowerScoreCard(config);
+        LowerScorecard card = new LowerScorecard(config);
         card.scoreNewHand(hand);
         assertEquals(expectedValueSmall, card.getLine("ss").getValue());
         assertEquals(expectedValueLarge, card.getLine("ls").getValue());
@@ -236,7 +236,7 @@ public class LowerScorecardTest {
         dice.add(new Die(dieSides,10));
         dice.add(new Die(dieSides,29));
         hand.setHand(dice);
-        LowerScoreCard card = new LowerScoreCard(config);
+        LowerScorecard card = new LowerScorecard(config);
         card.scoreNewHand(hand);
         card.getLine("y").score();
         card.scoreNewHand(hand);

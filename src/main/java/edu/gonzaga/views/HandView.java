@@ -29,23 +29,24 @@ public class HandView extends JPanel implements PropertyChangeListener {
 
     /**
      * Class for the display of the hand.
-     * @param hand the hand to display.
+     * 
+     * @param hand           the hand to display.
      * @param showRollButton option to hide the roll button.
      */
-    public HandView(Hand hand, boolean showRollButton){
+    public HandView(Hand hand, boolean showRollButton) {
         rollButton = new JButton("Roll");
         dieViews = new ArrayList<>();
         this.hand = hand;
         this.hand.addPropertyChangeListener(this::propertyChange);
         rollCount = 1;
 
-        for(int i = 0; i<hand.getHandSize(); i++){
+        for (int i = 0; i < hand.getHandSize(); i++) {
             DieView view = new DieView(hand.getDice().get(i));
             add(view);
             dieViews.add(view);
         }
 
-        if(showRollButton){
+        if (showRollButton) {
             add(rollButton);
         }
 
@@ -54,7 +55,7 @@ public class HandView extends JPanel implements PropertyChangeListener {
             public void actionPerformed(ActionEvent e) {
                 hand.rollAll();
                 rollCount++;
-                if(rollCount >= hand.maxRollsPerTurn()){
+                if (rollCount >= hand.maxRollsPerTurn()) {
                     rollButton.setEnabled(false);
                 }
             }
@@ -64,6 +65,7 @@ public class HandView extends JPanel implements PropertyChangeListener {
 
     /**
      * Get a reference to the roll button that rolls the die in the hand.
+     * 
      * @return the roll button.
      */
     public JButton getRollButton() {
@@ -72,11 +74,12 @@ public class HandView extends JPanel implements PropertyChangeListener {
 
     /**
      * PropertyChangeListener callback.
+     * 
      * @param evt the event triggered.
      */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        if(evt.getPropertyName().equals("newturn")){
+        if (evt.getPropertyName().equals("newturn")) {
             rollCount = 1;
         }
     }

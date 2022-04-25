@@ -9,8 +9,6 @@
  */
 package edu.gonzaga;
 
-import java.util.ArrayList;
-
 /**
  * Represents the game configuration values.
  */
@@ -19,8 +17,8 @@ public class GameConfiguration {
     private int handSize;
     private int numTurnsPerHand;
 
-    public GameConfiguration(){
-        this(6,5, 3);
+    public GameConfiguration() {
+        this(6, 5, 3);
     }
 
     public GameConfiguration(int numDieSides, int handSize, int numTurnsPerHand) {
@@ -31,6 +29,7 @@ public class GameConfiguration {
 
     /**
      * The number of sides in the configuration.
+     * 
      * @return number of die sides.
      */
     public int getNumDieSides() {
@@ -39,6 +38,7 @@ public class GameConfiguration {
 
     /**
      * The hand side in the configuration
+     * 
      * @return size of hand.
      */
     public int getHandSize() {
@@ -47,6 +47,7 @@ public class GameConfiguration {
 
     /**
      * The number of turns per hand in the configuration.
+     * 
      * @return number of turns per hand.
      */
     public int getNumTurnsPerHand() {
@@ -55,6 +56,7 @@ public class GameConfiguration {
 
     /**
      * Returns a string representation of the configuration.
+     * 
      * @return the string representation.
      */
     @Override

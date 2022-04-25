@@ -32,7 +32,7 @@ public class ScorecardLineView extends JPanel implements PropertyChangeListener 
     /**
      * GUI for scoreline.
      */
-    public ScorecardLineView(ImageIcon icon, boolean showScoreButton, ScorecardLine line){
+    public ScorecardLineView(ImageIcon icon, boolean showScoreButton, ScorecardLine line) {
         this.icon = icon;
         label = new JLabel(line.getTitle());
         value = new JTextField();
@@ -40,7 +40,7 @@ public class ScorecardLineView extends JPanel implements PropertyChangeListener 
         this.line = line;
         line.addPropertyChangeListener(this::propertyChange);
 
-        button.setPreferredSize(new Dimension(100,30));
+        button.setPreferredSize(new Dimension(100, 30));
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -55,32 +55,33 @@ public class ScorecardLineView extends JPanel implements PropertyChangeListener 
         add(label);
         add(value);
 
-        if(showScoreButton){
+        if (showScoreButton) {
             add(button);
         }
 
-        if(icon != null){
+        if (icon != null) {
             iconView = new JLabel(icon);
             add(iconView);
         }
 
-        setPreferredSize(new Dimension(200,40));
+        setPreferredSize(new Dimension(200, 40));
     }
 
     /**
      * Refresh the UI with the model.
      */
-    public void updateValue(){
+    public void updateValue() {
         value.setText("" + line.getValue());
     }
 
     /**
      * PropertyChangeListener callback.
+     * 
      * @param evt the event triggered.
      */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        if(evt.getPropertyName().equals("scored") || evt.getPropertyName().equals("value")) {
+        if (evt.getPropertyName().equals("scored") || evt.getPropertyName().equals("value")) {
             updateValue();
         }
     }

@@ -11,7 +11,7 @@
 package edu.gonzaga;
 
 /** Main program class for launching Yahtzee program. */
-public class Yahtzee{
+public class Yahtzee {
     public static void main(String[] args) {
         GameControl gameControl = new GameControl();
     }

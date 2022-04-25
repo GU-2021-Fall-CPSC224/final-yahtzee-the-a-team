@@ -38,7 +38,7 @@ public class PlayerListView extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 String text = nameField.getText();
                 if(!text.equals("") && !playersModel.contains(text)) {
-                    playersModel.add(0, text);
+                    playersModel.add(playersModel.size(), text);
                     players.setSelectedIndex(0);
                 }
             }

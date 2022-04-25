@@ -4,15 +4,38 @@ import edu.gonzaga.Player;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 
-public class PlayerListView extends JPanel {
+public class PlayerListView extends JPanel{
     private JList<String> players;
     private DefaultListModel<String> playersModel;
+
+    public JButton getAddButton() {
+        return addButton;
+    }
+
+    public void setAddButton(JButton addButton) {
+        this.addButton = addButton;
+    }
+
+    public JButton getRemoveButton() {
+        return removeButton;
+    }
+
+    public void setRemoveButton(JButton removeButton) {
+        this.removeButton = removeButton;
+    }
+
+    public JButton getOkButton() {
+        return okButton;
+    }
+
+    public void setOkButton(JButton okButton) {
+        this.okButton = okButton;
+    }
 
     private JButton addButton;
     private JButton removeButton;
@@ -37,13 +60,12 @@ public class PlayerListView extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String text = nameField.getText();
-                if (!text.equals("") && !playersModel.contains(text)) {
-                    playersModel.add(0, text);
+                if(!text.equals("") && !playersModel.contains(text)) {
+                    playersModel.add(playersModel.size(), text);
                     players.setSelectedIndex(0);
                 }
             }
         });
-
         removeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -100,4 +122,6 @@ public class PlayerListView extends JPanel {
         }
         return players;
     }
+    
 }
+

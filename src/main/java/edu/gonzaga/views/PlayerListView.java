@@ -13,7 +13,31 @@ public class PlayerListView extends JPanel{
     private JList<String> players;
     private DefaultListModel<String> playersModel;
 
-    private AddButton addButton;
+    public JButton getAddButton() {
+        return addButton;
+    }
+
+    public void setAddButton(JButton addButton) {
+        this.addButton = addButton;
+    }
+
+    public JButton getRemoveButton() {
+        return removeButton;
+    }
+
+    public void setRemoveButton(JButton removeButton) {
+        this.removeButton = removeButton;
+    }
+
+    public JButton getOkButton() {
+        return okButton;
+    }
+
+    public void setOkButton(JButton okButton) {
+        this.okButton = okButton;
+    }
+
+    private JButton addButton;
     private JButton removeButton;
     private JButton okButton;
     private JTextField nameField;
@@ -26,7 +50,7 @@ public class PlayerListView extends JPanel{
 
         playersModel = new DefaultListModel<>();
         players = new JList<>(playersModel);
-        addButton = new AddButton("Add");
+        addButton = new JButton("Add");
         removeButton = new JButton("Remove");
         okButton = new JButton("OK");
         nameField = new JTextField();
@@ -98,33 +122,6 @@ public class PlayerListView extends JPanel{
         }
         return players;
     }
-
-    private class AddButton extends JButton implements KeyListener{
-
-        public AddButton(String string) {
-            super(string);
-        }
-
-        @Override
-        public void keyTyped(KeyEvent e) {
-            // Nothing, must implement for KeyListener 
-            System.out.println("Key pressed 1");
-        }
-
-        @Override
-        public void keyPressed(KeyEvent e) {
-            if(e.getKeyCode() == KeyEvent.VK_ENTER)
-            {
-                System.out.println("Key pressed 2");
-                this.doClick();
-            }
-        }
-
-        @Override
-        public void keyReleased(KeyEvent e) {
-            // Nothing, must implement for KeyListener      
-            System.out.println("Key pressed 3");    
-        }
-    }
+    
 }
 

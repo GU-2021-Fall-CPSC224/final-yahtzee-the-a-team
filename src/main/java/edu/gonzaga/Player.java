@@ -127,4 +127,28 @@ public class Player implements PropertyChangeListener {
     public String getName() {
         return name;
     }
+
+    /**
+     * @Author Tyler CH
+     * @Date created: 4/24/22;
+     * Date last modified: 4/24/22
+     * @Description returns if the players scorecard is full or not.
+     * @pre
+     * @post
+     **/
+    public boolean isFull() {
+        return lowerScorecard.isFull() && upperScorecard.isFull();
+    }
+
+    /**
+     * @Author Tyler CH
+     * @Date created: 4/24/22;
+     * Date last modified: 4/24/22
+     * @Description returns the combined upper and lower scorecard of this player.2
+     * @pre
+     * @post
+     **/
+    public int totalScore() {
+        return lowerScorecard.getTotalLine().getValue() + upperScorecard.getTotalLine().getValue();
+    }
 }

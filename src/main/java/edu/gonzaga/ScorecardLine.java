@@ -35,6 +35,7 @@ public class ScorecardLine {
 
     /**
      * Registers a PropertyChangeListener to this class.
+     * 
      * @param listener the listener to register.
      */
     public void addPropertyChangeListener(PropertyChangeListener listener) {
@@ -43,6 +44,7 @@ public class ScorecardLine {
 
     /**
      * Removes a PropertyChangeListener to this class.
+     * 
      * @param listener the listener to remove.
      */
     public void removePropertyChangeListener(PropertyChangeListener listener) {
@@ -64,10 +66,13 @@ public class ScorecardLine {
     }
 
     /**
-     * Score the temp calculated value in this scorecard.
+     * If the line has already been scored, throw an exception. Otherwise, set the
+     * scored variable to true and fire a property change event
+     * 
+     * @exception IllegalStateException()
      */
-    public void score(){
-        if(scored) {
+    public void score() {
+        if (scored) {
             throw new IllegalStateException("Line already scored.");
         }
         scored = true;
@@ -96,10 +101,11 @@ public class ScorecardLine {
     }
 
     /**
-     * Sets a new value and triggers an event.
-     * @param value the new value to set.
+     * If the new {@link ScorecardLine} value is different than the old value, then fire a property change event.
+     * 
+     * @param value The name of the property.
      */
-    public void setValueWithEvent(int value){
+    public void setValueWithEvent(int value) {
         int oldValue = this.value;
         this.setValue(value);
         pcs.firePropertyChange("value", oldValue, value);

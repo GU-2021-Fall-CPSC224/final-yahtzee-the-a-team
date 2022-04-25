@@ -9,8 +9,6 @@
  */
 package edu.gonzaga;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.List;
 
 public class UpperScorecard extends Scorecard {
@@ -20,25 +18,33 @@ public class UpperScorecard extends Scorecard {
             "Sevens", "Eights", "Nines", "Tens", "Elevens", "Twelves"
     };
 
-    public UpperScorecard(GameConfiguration config){
+    public UpperScorecard(GameConfiguration config) {
         super(config);
 
-        for(int i = 0; i<config.getNumDieSides(); i++){
+        // Adding a new scorecard line to the list of lines, as well as adding a
+        // propertyChangeListener
+        for (int i = 0; i < config.getNumDieSides(); i++) {
             getLines().add(new ScorecardLine(titles[i]));
-            getLines().get((getLines().size()-1)).addPropertyChangeListener(this::propertyChange);
+            getLines().get((getLines().size() - 1)).addPropertyChangeListener(this::propertyChange);
         }
     }
 
     /**
-     * Scores a new hand and populates the scorecard with temp values.
-     * @param hand the hand to score.
+     * If the line is not scored, set the value of the line to the value of the new
+     * score at the index of
+     * the line.
+     * 
+     * @param hand The hand that is being scored
      */
     @Override
     public void scoreNewHand(Hand hand) {
         UpperSectionScoring scoring = new UpperSectionScoring(hand);
         List<Integer> data = scoring.getSectionData();
-        for(int i = 0; i<data.size(); i++){
-            if(!getLines().get(i).isScored()) {
+
+        // Iterates through the data list. If the line is not scored, then
+        // the value of the line is set to the value of the new score at the index of the line.
+        for (int i = 0; i < data.size(); i++) {
+            if (!getLines().get(i).isScored()) {
                 getLines().get(i).setValue(data.get(i));
             }
         }

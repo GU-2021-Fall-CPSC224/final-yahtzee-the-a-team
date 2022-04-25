@@ -4,15 +4,38 @@ import edu.gonzaga.Player;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 
-public class PlayerListView extends JPanel {
+public class PlayerListView extends JPanel{
     private JList<String> players;
     private DefaultListModel<String> playersModel;
+
+    public JButton getAddButton() {
+        return addButton;
+    }
+
+    public void setAddButton(JButton addButton) {
+        this.addButton = addButton;
+    }
+
+    public JButton getRemoveButton() {
+        return removeButton;
+    }
+
+    public void setRemoveButton(JButton removeButton) {
+        this.removeButton = removeButton;
+    }
+
+    public JButton getOkButton() {
+        return okButton;
+    }
+
+    public void setOkButton(JButton okButton) {
+        this.okButton = okButton;
+    }
 
     private JButton addButton;
     private JButton removeButton;
@@ -23,7 +46,7 @@ public class PlayerListView extends JPanel {
 
     public PlayerListView() {
         setLayout(new BorderLayout());
-        setPreferredSize(new Dimension(400,400));
+        setPreferredSize(new Dimension(400, 400));
 
         playersModel = new DefaultListModel<>();
         players = new JList<>(playersModel);
@@ -38,17 +61,16 @@ public class PlayerListView extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 String text = nameField.getText();
                 if(!text.equals("") && !playersModel.contains(text)) {
-                    playersModel.add(0, text);
+                    playersModel.add(playersModel.size(), text);
                     players.setSelectedIndex(0);
                 }
             }
         });
-
         removeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String selected = players.getSelectedValue();
-                if(selected != null) {
+                if (selected != null) {
                     playersModel.removeElement(selected);
                 }
             }
@@ -57,10 +79,10 @@ public class PlayerListView extends JPanel {
         okButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(playersModel.getSize() <= 0) {
+                if (playersModel.getSize() <= 0) {
                     nameField.setText("Player 1");
                 } else {
-                    pcs.firePropertyChange("close", 0,1);
+                    pcs.firePropertyChange("close", 0, 1);
                 }
             }
         });
@@ -77,6 +99,7 @@ public class PlayerListView extends JPanel {
 
     /**
      * Registers a PropertyChangeListener to this class.
+     * 
      * @param listener the listener to register.
      */
     public void addPropertyChangeListener(PropertyChangeListener listener) {
@@ -85,6 +108,7 @@ public class PlayerListView extends JPanel {
 
     /**
      * Removes a PropertyChangeListener to this class.
+     * 
      * @param listener the listener to remove.
      */
     public void removePropertyChangeListener(PropertyChangeListener listener) {
@@ -93,9 +117,11 @@ public class PlayerListView extends JPanel {
 
     public ArrayList<String> getPlayers() {
         ArrayList<String> players = new ArrayList<>();
-        for(int i = 0; i<playersModel.getSize(); i++) {
+        for (int i = 0; i < playersModel.getSize(); i++) {
             players.add(playersModel.get(i));
         }
         return players;
     }
+    
 }
+

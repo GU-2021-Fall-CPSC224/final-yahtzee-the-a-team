@@ -40,8 +40,21 @@ class ScorecardTest {
     void testIsFullLower(){
         boolean expectedValue = true;
         Scorecard scorecard = new LowerScorecard(new GameConfiguration());
-        for(ScorecardLine line : scorecard.getLines()){
-            line.score();
+        for(ScorecardLine line : scorecard.getLines()) {
+            if (!line.getIdentifier().equals("b")) {
+                line.score();
+            }
+        }
+        assertEquals(expectedValue, scorecard.isFull());
+    }
+
+    @Test
+    void testNotIsFullLower() {
+        boolean expectedValue = false;
+        Scorecard scorecard = new LowerScorecard(new GameConfiguration());
+        ArrayList<ScorecardLine> lines = scorecard.getLines();
+        for(int i = 0; i<lines.size()-2; i++) {
+            lines.get(i).score();
         }
         assertEquals(expectedValue, scorecard.isFull());
     }

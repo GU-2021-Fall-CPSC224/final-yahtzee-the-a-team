@@ -17,10 +17,10 @@ import java.awt.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class ParameterView extends JPanel{
-    private final Integer[] sideChoices = {6,8,12};
-    private final Integer[] handSizeChoices = {5,6,7};
-    private final Integer[] numRollsChoices = {1,2,3,4,5,6,7,8,9,10};
+public class ParameterView extends JPanel {
+    private final Integer[] sideChoices = { 6, 8, 12 };
+    private final Integer[] handSizeChoices = { 5, 6, 7 };
+    private final Integer[] numRollsChoices = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
     private JLabel title;
     private JComboBox<Integer> dieSides;
@@ -42,11 +42,11 @@ public class ParameterView extends JPanel{
     /**
      * Options for selecting the game config.
      */
-    public ParameterView(){
+    public ParameterView() {
         this(new GameConfiguration());
     }
 
-    public ParameterView(GameConfiguration config){
+    public ParameterView(GameConfiguration config) {
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
         this.config = config;
@@ -54,13 +54,13 @@ public class ParameterView extends JPanel{
 
         title = new JLabel("Choose your game settings:");
         dieSides = new JComboBox<>(sideChoices);
-        dieSides.setPreferredSize(new Dimension(100,20));
+        dieSides.setPreferredSize(new Dimension(100, 20));
         dieSides.setSelectedItem(config.getNumDieSides());
         handSize = new JComboBox<>(handSizeChoices);
-        handSize.setPreferredSize(new Dimension(100,20));
+        handSize.setPreferredSize(new Dimension(100, 20));
         handSize.setSelectedItem(config.getHandSize());
         numRolls = new JComboBox<>(numRollsChoices);
-        numRolls.setPreferredSize(new Dimension(100,20));
+        numRolls.setPreferredSize(new Dimension(100, 20));
         numRolls.setSelectedIndex(2);
 
         dieSidesComponent = new LabeledComponent("Die Sides:", dieSides);
@@ -71,26 +71,27 @@ public class ParameterView extends JPanel{
         this.add(handSizeComponent);
         this.add(numRollsComponent);
         this.add(new BottomButtons());
-        this.add(Box.createRigidArea(new Dimension(5,10)));
+        this.add(Box.createRigidArea(new Dimension(5, 10)));
 
-        confirmButton.addActionListener(e -> { //OK Button
-            int sides = (Integer)dieSides.getSelectedItem();
-            int size = (Integer)handSize.getSelectedItem();
-            int rolls = (Integer)numRolls.getSelectedItem();
+        confirmButton.addActionListener(e -> { // OK Button
+            int sides = (Integer) dieSides.getSelectedItem();
+            int size = (Integer) handSize.getSelectedItem();
+            int rolls = (Integer) numRolls.getSelectedItem();
 
             this.config = new GameConfiguration(sides, size, rolls);
-            pcs.firePropertyChange("close", 0,1);
+            pcs.firePropertyChange("close", 0, 1);
         });
 
-        //Cancel Button
+        // Cancel Button
         cancelButton.addActionListener(e -> {
             this.config = null;
-            pcs.firePropertyChange("close", 0,1);
+            pcs.firePropertyChange("close", 0, 1);
         });
     }
 
     /**
      * Registers a PropertyChangeListener to this class.
+     * 
      * @param listener the listener to register.
      */
     public void addPropertyChangeListener(PropertyChangeListener listener) {
@@ -99,6 +100,7 @@ public class ParameterView extends JPanel{
 
     /**
      * Removes a PropertyChangeListener to this class.
+     * 
      * @param listener the listener to remove.
      */
     public void removePropertyChangeListener(PropertyChangeListener listener) {
@@ -107,6 +109,7 @@ public class ParameterView extends JPanel{
 
     /**
      * Used to get the payload out of dialog.
+     * 
      * @return the configuration choosen from this panel.
      */
     public GameConfiguration getConfig() {
@@ -118,7 +121,7 @@ public class ParameterView extends JPanel{
      * OK and Cancel buttons.
      */
     private class BottomButtons extends JPanel {
-        public BottomButtons(){
+        public BottomButtons() {
             this.setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
 
             confirmButton = new JButton("OK");

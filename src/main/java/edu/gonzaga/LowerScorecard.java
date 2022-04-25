@@ -9,10 +9,7 @@
  */
 package edu.gonzaga;
 
-import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class LowerScorecard extends Scorecard implements PropertyChangeListener {
@@ -26,12 +23,14 @@ public class LowerScorecard extends Scorecard implements PropertyChangeListener 
             "c", "b"
     };
 
-    public LowerScorecard(GameConfiguration configuration){
+    public LowerScorecard(GameConfiguration configuration) {
         super(configuration);
 
-        for(int i = 0; i< titles.length; i++){
+        
+        // Looping through the array of titles and adding them to the scorecard.
+        for (int i = 0; i < titles.length; i++) {
             getLines().add(new ScorecardLine(titles[i], ids[i]));
-            getLines().get((getLines().size()-1)).addPropertyChangeListener(this::propertyChange);
+            getLines().get((getLines().size() - 1)).addPropertyChangeListener(this::propertyChange);
         }
 
         getLine("b").score();
@@ -46,26 +45,31 @@ public class LowerScorecard extends Scorecard implements PropertyChangeListener 
     public void scoreNewHand(Hand hand) {
         LowerSectionScoring scoring = new LowerSectionScoring(hand);
         Map<String, Integer> data = scoring.getSectionData();
-        for(ScorecardLine line : getLines()){
-            if(!line.isScored() && !line.getIdentifier().equals("b")) {
+
+        
+        // Looping through the array of lines and setting their value to 0
+        for (ScorecardLine line : getLines()) {
+            if (!line.isScored() && !line.getIdentifier().equals("b")) {
                 line.setValue(data.getOrDefault(line.getIdentifier(), 0));
             }
         }
 
-        if(getLine("y").isScored() && data.getOrDefault("y", 0) > 0) {
+        // Checking if the line with the id of "y" is scored and if the data has a value of "y" that is greater than 0.
+        if (getLine("y").isScored() && data.getOrDefault("y", 0) > 0) {
             ScorecardLine line = getLine("b");
-            line.setValueWithEvent(line.getValue()+100);
+            line.setValueWithEvent(line.getValue() + 100);
         }
     }
 
     /**
      * Use to get a line in this scorecard.
+     * 
      * @param id the id of the line to get.
      * @return the line with the corresponding id.
      */
-    public ScorecardLine getLine(String id){
-        for(ScorecardLine line : getLines()){
-            if(line.getIdentifier().equals(id)) {
+    public ScorecardLine getLine(String id) {
+        for (ScorecardLine line : getLines()) {
+            if (line.getIdentifier().equals(id)) {
                 return line;
             }
         }

@@ -41,6 +41,7 @@ public class GameControl implements PropertyChangeListener {
         ConfigurationDialog dialog = new ConfigurationDialog(frame);
         dialog.setVisible(true);
         GameConfiguration config = dialog.getPayload();
+        
 
         if (config != null) {
             PlayerDialog playerDialog = new PlayerDialog(frame);

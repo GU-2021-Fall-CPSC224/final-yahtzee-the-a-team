@@ -47,7 +47,6 @@ public class PlayerListView extends JPanel{
     public PlayerListView() {
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(400, 400));
-
         playersModel = new DefaultListModel<>();
         players = new JList<>(playersModel);
         addButton = new JButton("Add");

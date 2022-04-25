@@ -16,6 +16,8 @@ import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
+import javax.swing.*;
+import java.awt.*;
 import javax.swing.WindowConstants;
 
 import edu.gonzaga.dialogs.ConfigurationDialog;
@@ -25,6 +27,7 @@ import edu.gonzaga.views.PlayerView;
 public class GameControl implements PropertyChangeListener {
 
     private ArrayList<String> names;
+    ArrayList<Player> players;
     private ArrayList<PlayerView> playerViews;
     private int playerTurn = 0;
     private JFrame frame = new JFrame();
@@ -44,9 +47,9 @@ public class GameControl implements PropertyChangeListener {
             playerDialog.setVisible(true);
 
             names = playerDialog.getPayload();
-            if (!names.isEmpty()) {
-                ArrayList<Player> players = new ArrayList<>();
-                for (String s : names) {
+            if(names.size() > 0) {
+                players = new ArrayList<>();
+                for(String s : names) {
                     players.add(new Player(s, config));
                 }
 
@@ -74,16 +77,125 @@ public class GameControl implements PropertyChangeListener {
         if (playerTurn >= playerViews.size()) {
             playerTurn = 0;
         }
+        changeView(playerViews.get(playerTurn));
+    }
+
+    /**
+     * @Author Tyler CH
+     * @Date created: 4/24/22;
+     * Date last modified: 4/24/22
+     * @Description sets the main view of the screen.
+     * @pre previously visible screen in content pane
+     * @post invisible previous screen content pane, visible new screen content pane
+     **/
+    private void changeView(Container container) {
         frame.setVisible(false);
-        frame.setContentPane(playerViews.get(playerTurn));
+        frame.setContentPane(container);
         frame.setVisible(true);
     }
 
     @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        if (evt.getPropertyName().equals("nextPlayer")) {
-            playerTurn++;
-            startNextPlayerRound();
+    public void propertyChange(PropertyChangeEvent evt)
+    {
+        if(evt.getPropertyName().equals("nextPlayer"))
+        {
+            if(!checkGameEnd()) { //If game not over
+                playerTurn++;
+                startNextPlayerRound();
+            } else { //If game over
+                setWinnerScreen(findWinner());
+            }
         }
+    }
+
+    /**
+     * @Author Tyler CH
+     * @Date created: 4/24/22;
+     * Date last modified: 4/24/22
+     * @Description sets teh screen on a player in winner form.
+     * @pre previously visible screen in content pane
+     * @post the winner's screen
+     **/
+    private void setWinnerScreen(Player player) {
+        PlayerView winnerView = getPlayerView(player);
+        winnerView.setWinnerView();
+        changeView(winnerView);
+    }
+
+    /**
+     * @Author Tyler CH
+     * @Date created: 4/24/22;
+     * Date last modified: 4/24/22
+     * @Description returns the view corresponding to a player
+     * @pre
+     * @post
+     **/
+    private PlayerView getPlayerView(Player player) {
+        for(PlayerView view : playerViews) {
+            if(view.getPlayer().equals(player)) {
+                return view;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * @Author Tyler CH
+     * @Date created: 4/24/22;
+     * Date last modified: 4/24/22
+     * @Description determines the player with the highest total of points
+     * @pre
+     * @post
+     **/
+    private Player findWinner() {
+        int total = 0;
+        Player winner = null;
+        for(Player player : players) {
+            if(player.totalScore() > total) {
+                winner = player;
+                total = player.totalScore();
+            }
+        }
+        return winner;
+    }
+
+    /**
+     * @Author Tyler CH
+     * @Date created: 4/24/22;
+     * Date last modified: 4/24/22
+     * @Description Checks if an endgame condition has been met
+     * @pre
+     * @post
+     **/
+    private boolean checkGameEnd() {
+        return  checkSameTurn() && checkScorecardFull();
+    }
+
+    /**
+     * @Author Tyler CH
+     * @Date created: 4/24/22;
+     * Date last modified: 4/24/22
+     * @Description Checks if all players have done the same turn.
+     * @pre
+     * @post
+     **/
+    private boolean checkSameTurn() {
+        return playerTurn == playerViews.size()-1;
+    }
+
+    /**
+     * @Author Tyler CH
+     * @Date created: 4/24/22;
+     * Date last modified: 4/24/22
+     * @Description Checks if all players scorecards are full
+     * @pre
+     * @post
+     **/
+    private boolean checkScorecardFull() {
+        boolean result = true;
+        for(Player player : players) {
+            result = result && player.isFull();
+        }
+        return result;
     }
 }

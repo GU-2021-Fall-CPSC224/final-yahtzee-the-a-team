@@ -29,6 +29,7 @@ public class PlayerView extends JPanel implements PropertyChangeListener {
 
     private JButton scoreButton;
     private JLabel turnLabel;
+    private JLabel nameLabel;
 
     // private LowerScorecard lowerScorecard;
     private ScorecardView lowerScorecardView;
@@ -80,14 +81,14 @@ public class PlayerView extends JPanel implements PropertyChangeListener {
      * @param evt the event that was triggered.
      */
     @Override
-    public void propertyChange(PropertyChangeEvent evt) { // Advance turn.
-        if (evt.getPropertyName().equals("scored")) {
-            // TODO: Create Next player's turn
-            // Here is where the next player's turn should start
+    public void propertyChange(PropertyChangeEvent evt) { //Advance turn.
+        if(evt.getPropertyName().equals("scored")) {
             this.pcs.firePropertyChange("nextPlayer", false, true);
             scoringDialog.setVisible(false);
             player.newTurn();
-            turnLabel.setText("Turn: " + player.getTurn());
+            if(!turnLabel.getText().contains("GAME OVER!")) {
+                turnLabel.setText("Turn: " + player.getTurn());
+            }
             handView.getRollButton().setEnabled(true);
         } else if (evt.getPropertyName().equals("total")) {
             int upperTotal = player.getUpperScorecard().getTotalLine().getValue();
@@ -95,6 +96,18 @@ public class PlayerView extends JPanel implements PropertyChangeListener {
             int total = upperTotal + lowerTotal;
             ((JTextField) totalLabel.getComponent()).setText("" + total);
         }
+    }
+
+    /**
+     * @Author Tyler CH
+     * @Date created: 4/24/22;
+     * Date last modified: 4/24/22
+     * @Description returns the player that this view models
+     * @pre
+     * @post
+     **/
+    public Player getPlayer() {
+        return player;
     }
 
     /**
@@ -127,7 +140,8 @@ public class PlayerView extends JPanel implements PropertyChangeListener {
             bottomButtons = new JPanel();
 
             add(logo);
-            namePanel.add(new JLabel(player.getName()), BorderLayout.WEST);
+            nameLabel = new JLabel(player.getName());
+            namePanel.add(nameLabel, BorderLayout.WEST);
             namePanel.add(turnLabel, BorderLayout.EAST);
             add(namePanel);
             add(handView);
@@ -137,6 +151,22 @@ public class PlayerView extends JPanel implements PropertyChangeListener {
             add(totalLabel);
 
         }
+    }
+
+    /**
+     * @Author Tyler CH
+     * @Date created: 4/24/22;
+     * Date last modified: 4/24/22
+     * @Description Sets this view to the form of a winnner view.
+     * @pre
+     * @post
+     **/
+    public void setWinnerView() {
+        nameLabel.setVisible(false);
+        turnLabel.setText("GAME OVER! " + player.getName() + " wins!" );
+        totalLabel.getComponent().setBackground(Color.green);
+        handView.getRollButton().setEnabled(false);
+        scoreButton.setEnabled(false);
     }
 
     /**

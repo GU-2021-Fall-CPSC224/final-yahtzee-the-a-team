@@ -37,10 +37,11 @@ public class LabeledComponent extends JPanel {
         this(labelText, component, 500);
     }
 
+
+
     /**
-     * Gets the component part of this structure.
-     * 
-     * @return the JComponent.
+     * Returns the component that the labeledComponent creates
+     * @return the JComponent
      */
     public JComponent getComponent() {
         return component;

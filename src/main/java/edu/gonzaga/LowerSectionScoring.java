@@ -23,6 +23,8 @@ public class LowerSectionScoring {
     public LowerSectionScoring(Hand hand) {
         sectionData = new HashMap<>();
         counts = new ArrayList<>();
+
+        // Creating a list of 0's with a length equal to the number of sides on the die.
         for (int i = 0; i < hand.getDice().get(0).getNumSides(); i++) {
             counts.add(0);
         }
@@ -30,9 +32,9 @@ public class LowerSectionScoring {
     }
 
     /**
-     * Re-calculates the scorecard section with a new hand.
-     *
-     * @param hand the hand to calculate scorecard section with.
+     * This function updates the section of the scorecard that is being used
+     * 
+     * @param hand the hand of dice
      */
     public void updateSection(Hand hand) {
         this.hand = hand;
@@ -69,8 +71,14 @@ public class LowerSectionScoring {
     }
 
     /**
-     * Calculates and updates the data map for a "full house" and all 3 "of a
-     * kinds".
+     * If the dice contain 3 of a kind, then if they also contain 2 of a kind,
+     * then add 25 to the score for full house. Otherwise, add the sum of the dice
+     * to the score for 3 of a kind.
+     * If the dice contain 4 of a kind, then add the sum of the dice to the score
+     * for 3 of a kind and
+     * 4 of a kind. If the dice contains 5 of a kind, then add the sum of the dice
+     * to the score for
+     * 3 of a kind, 4 of a kind, and yahtzee
      */
     private void calculateOfAKind() {
         if (counts.contains(3)) {
@@ -94,8 +102,12 @@ public class LowerSectionScoring {
     }
 
     /**
-     * Calculates and updates the data map with "small straight" and "large
-     * straight"
+     * If the number of consecutive values in the array is 4, then the value of the
+     * key "ss" (small straight)
+     * in the HashMap is 30. If the number of consecutive non-zero values in the
+     * array is 5, then the
+     * value of the key "ss" (small straight) in the HashMap is 30 and the value of
+     * the key "ls" (large straight) in the HashMap is 40
      */
     private void calculateStraight() {
         int numConsec = 1;
@@ -105,22 +117,18 @@ public class LowerSectionScoring {
             } else if ((counts.get(i) == 0 || counts.get(i + 1) == 0) && numConsec < 4) {
                 numConsec = 1;
             }
-
-            switch (numConsec) {
-                case 4:
-                    sectionData.put("ss", 30);
-                    break;
-                case 5:
-                    sectionData.put("ss", 30);
-                    sectionData.put("ls", 40);
-                    break;
+            if (numConsec == 4) {
+                sectionData.put("ss", 30);
+            } else if (numConsec == 5) {
+                sectionData.put("ss", 30);
+                sectionData.put("ls", 40);
             }
         }
 
     }
 
     /**
-     * Calculates and updates the data map with the "chance" line.
+     * It takes a list of integers, and returns the sum of the product of each integer and its index (for chance line)
      */
     private void calculateChance() {
         int sum = 0;
@@ -131,9 +139,9 @@ public class LowerSectionScoring {
     }
 
     /**
-     * Calculates the sum of all die in the hand.
-     *
-     * @return the sum of all die in the hand.
+     * This function calculates the sum of the dice in the hand
+     * 
+     * @return The sum of the dice.
      */
     private int calculateSum() {
         int sum = 0;

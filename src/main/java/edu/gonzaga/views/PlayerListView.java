@@ -22,7 +22,7 @@ public class PlayerListView extends JPanel{
 
     public PlayerListView() {
         setLayout(new BorderLayout());
-        setPreferredSize(new Dimension(400,400));
+        setPreferredSize(new Dimension(400, 400));
 
         playersModel = new DefaultListModel<>();
         players = new JList<>(playersModel);
@@ -46,7 +46,7 @@ public class PlayerListView extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 String selected = players.getSelectedValue();
-                if(selected != null) {
+                if (selected != null) {
                     playersModel.removeElement(selected);
                 }
             }
@@ -55,10 +55,10 @@ public class PlayerListView extends JPanel{
         okButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(playersModel.getSize() <= 0) {
+                if (playersModel.getSize() <= 0) {
                     nameField.setText("Player 1");
                 } else {
-                    pcs.firePropertyChange("close", 0,1);
+                    pcs.firePropertyChange("close", 0, 1);
                 }
             }
         });
@@ -75,6 +75,7 @@ public class PlayerListView extends JPanel{
 
     /**
      * Registers a PropertyChangeListener to this class.
+     * 
      * @param listener the listener to register.
      */
     public void addPropertyChangeListener(PropertyChangeListener listener) {
@@ -83,6 +84,7 @@ public class PlayerListView extends JPanel{
 
     /**
      * Removes a PropertyChangeListener to this class.
+     * 
      * @param listener the listener to remove.
      */
     public void removePropertyChangeListener(PropertyChangeListener listener) {
@@ -91,7 +93,7 @@ public class PlayerListView extends JPanel{
 
     public ArrayList<String> getPlayers() {
         ArrayList<String> players = new ArrayList<>();
-        for(int i = 0; i<playersModel.getSize(); i++) {
+        for (int i = 0; i < playersModel.getSize(); i++) {
             players.add(playersModel.get(i));
         }
         return players;

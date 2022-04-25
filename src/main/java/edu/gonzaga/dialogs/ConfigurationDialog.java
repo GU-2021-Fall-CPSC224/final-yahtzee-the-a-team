@@ -9,12 +9,15 @@
  */
 package edu.gonzaga.dialogs;
 
-import edu.gonzaga.GameConfiguration;
-import edu.gonzaga.views.ParameterView;
-
-import javax.swing.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
+
+import edu.gonzaga.GameConfiguration;
+import edu.gonzaga.views.ParameterView;
 
 /**
  * Dialog for users to choose game settings before game.
@@ -24,12 +27,13 @@ public class ConfigurationDialog extends JDialog implements PropertyChangeListen
     ParameterView content;
 
     public ConfigurationDialog(JFrame frame, GameConfiguration config) {
-        super(frame,"Game Settings", true);
+        super(frame, "Game Settings", true);
         content = new ParameterView(config);
         content.addPropertyChangeListener(this::propertyChange);
         setContentPane(content);
-        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        setSize(250,175);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setSize(250, 175);
         setResizable(false);
     }
 
@@ -43,7 +47,7 @@ public class ConfigurationDialog extends JDialog implements PropertyChangeListen
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        if(evt.getPropertyName().equals("close")) {
+        if (evt.getPropertyName().equals("close")) {
             setVisible(false);
         }
     }

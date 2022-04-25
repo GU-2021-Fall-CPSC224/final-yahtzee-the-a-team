@@ -9,8 +9,6 @@
  */
 package edu.gonzaga;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.List;
 
 public class UpperScorecard extends Scorecard {

@@ -27,17 +27,17 @@ public class DieView extends JButton implements PropertyChangeListener {
 
     private boolean locked = false;
 
-    public DieView(Die die){
+    public DieView(Die die) {
         super("");
         images = new DiceImages("media");
         this.die = die;
         setIcon(images.getDieImage(1));
-        setPreferredSize(new Dimension(40,40));
+        setPreferredSize(new Dimension(40, 40));
         die.addPropertyChangeListener(this::propertyChange);
 
         this.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) { //Updates GUI when lock state changed from model.
+            public void actionPerformed(ActionEvent e) { // Updates GUI when lock state changed from model.
                 toggleLock();
             }
         });
@@ -49,7 +49,7 @@ public class DieView extends JButton implements PropertyChangeListener {
     /**
      * Locks/Unlocks the die in this view
      */
-    private void toggleLock(){
+    private void toggleLock() {
         locked = !locked;
         updateLockedState();
     }
@@ -57,10 +57,10 @@ public class DieView extends JButton implements PropertyChangeListener {
     /**
      * Refreshed the UI to whatever state the model is in.
      */
-    private void updateLockedState(){
+    private void updateLockedState() {
         Border blackline = BorderFactory.createLineBorder(Color.black);
         Border redline = BorderFactory.createLineBorder(Color.red);
-        if(locked) {
+        if (locked) {
             setBorder(redline);
             die.lock();
         } else {
@@ -71,27 +71,28 @@ public class DieView extends JButton implements PropertyChangeListener {
 
     /**
      * Sets the locked state of the UI. Does not update model.
+     * 
      * @param locked the state to set.
      */
     private void setLockedState(boolean locked) {
         Border blackline = BorderFactory.createLineBorder(Color.black);
         Border redline = BorderFactory.createLineBorder(Color.red);
-        if(locked) {
+        if (locked) {
             setBorder(redline);
         } else {
             setBorder(blackline);
         }
     }
 
-
     /**
      * PropertyChangeListener callback.
+     * 
      * @param evt the event triggered.
      */
     @Override
-    public void propertyChange(PropertyChangeEvent evt) { //Called when die model is rolled.
+    public void propertyChange(PropertyChangeEvent evt) { // Called when die model is rolled.
         String propertyName = evt.getPropertyName();
-        if(propertyName.equals("sideUp")){
+        if (propertyName.equals("sideUp")) {
             setIcon(images.getDieImage((int) evt.getNewValue()));
         } else if (propertyName.equals("lock")) {
             setLockedState((Boolean) evt.getNewValue());

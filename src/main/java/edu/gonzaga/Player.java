@@ -18,11 +18,10 @@ public class Player implements PropertyChangeListener {
 
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
-
     public Player(String name, GameConfiguration config) {
         this.name = name;
         this.config = config;
-        
+
         turn = 1;
 
         hand = new Hand(config);
@@ -35,6 +34,7 @@ public class Player implements PropertyChangeListener {
 
     /**
      * Registers a PropertyChangeListener to this class.
+     * 
      * @param listener the listener to register.
      */
     public void addPropertyChangeListener(PropertyChangeListener listener) {
@@ -43,6 +43,7 @@ public class Player implements PropertyChangeListener {
 
     /**
      * Removes a PropertyChangeListener to this class.
+     * 
      * @param listener the listener to remove.
      */
     public void removePropertyChangeListener(PropertyChangeListener listener) {
@@ -51,6 +52,7 @@ public class Player implements PropertyChangeListener {
 
     /**
      * Tells if this player has their scorecard full or not.
+     * 
      * @return
      */
     public boolean gameOver() {
@@ -67,6 +69,7 @@ public class Player implements PropertyChangeListener {
 
     /**
      * Scores the players current hand
+     * 
      * @return the scorecard with the new scored values in it.
      */
     public ArrayList<Scorecard> score() {
@@ -96,8 +99,8 @@ public class Player implements PropertyChangeListener {
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        if(evt.getPropertyName().equals("scored") || evt.getPropertyName().equals("total")) {
-            pcs.firePropertyChange(evt.getPropertyName(), evt.getOldValue(),evt.getNewValue());
+        if (evt.getPropertyName().equals("scored") || evt.getPropertyName().equals("total")) {
+            pcs.firePropertyChange(evt.getPropertyName(), evt.getOldValue(), evt.getNewValue());
         }
     }
 

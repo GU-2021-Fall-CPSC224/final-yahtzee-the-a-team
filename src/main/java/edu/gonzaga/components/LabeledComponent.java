@@ -9,8 +9,11 @@
  */
 package edu.gonzaga.components;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.FlowLayout;
+
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  * Class creates a component with a label to its left.
@@ -20,18 +23,17 @@ public class LabeledComponent extends JPanel {
     JLabel label;
     JComponent component;
 
-    public LabeledComponent(String labelText, JComponent component, int width){
+    public LabeledComponent(String labelText, JComponent component, int width) {
         this.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         label = new JLabel(labelText);
         this.component = component;
 
-
         this.add(label);
         this.add(component);
     }
 
-    public LabeledComponent(String labelText, JComponent component){
+    public LabeledComponent(String labelText, JComponent component) {
         this(labelText, component, 500);
     }
 

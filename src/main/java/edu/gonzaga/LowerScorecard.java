@@ -62,10 +62,10 @@ public class LowerScorecard extends Scorecard implements PropertyChangeListener 
     }
 
     /**
-     * > This function returns the line with the given identifier
+     * Use to get a line in this scorecard.
      * 
-     * @param id The id of the line to get
-     * @return The line with the given identifier.
+     * @param id the id of the line to get.
+     * @return the line with the corresponding id.
      */
     public ScorecardLine getLine(String id) {
         for (ScorecardLine line : getLines()) {

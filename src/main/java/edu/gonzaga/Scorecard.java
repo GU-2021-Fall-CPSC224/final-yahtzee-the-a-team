@@ -12,8 +12,7 @@ package edu.gonzaga;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.lang.reflect.Array;
-import java.util.*;
+import java.util.ArrayList;
 
 /** Class to store the upper and lower sections of the scorecard. */
 public abstract class Scorecard implements PropertyChangeListener {
@@ -85,9 +84,15 @@ public abstract class Scorecard implements PropertyChangeListener {
     }
 
     /**
+<<<<<<< HEAD
      * If all the lines are scored, then the scorecard is full
      * 
      * @return The method isFull() is returning a boolean value.
+=======
+     * Test if all lines in scorecard are full.
+     * 
+     * @return True if full, false if not full.
+>>>>>>> de9b885f21a5a199f4ad46faa00b02a09beb0b65
      */
     public boolean isFull() {
         for (ScorecardLine line : getLines()) {
@@ -100,9 +105,15 @@ public abstract class Scorecard implements PropertyChangeListener {
 
     
     /**
+<<<<<<< HEAD
      * This function returns an ArrayList of ScorecardLine objects
      * 
      * @return The lines arraylist.
+=======
+     * Get the data of all lines in this scorecard.
+     * 
+     * @return The list of lines in this scorecard.
+>>>>>>> de9b885f21a5a199f4ad46faa00b02a09beb0b65
      */
     public ArrayList<ScorecardLine> getLines() {
         return lines;
@@ -134,9 +145,15 @@ public abstract class Scorecard implements PropertyChangeListener {
     }
 
     /**
+<<<<<<< HEAD
      * This function returns the totalLine
      * 
      * @return The totalLine object.
+=======
+     * Gets the total line model for this scorecard.
+     * 
+     * @return the total line model.
+>>>>>>> de9b885f21a5a199f4ad46faa00b02a09beb0b65
      */
     public ScorecardLine getTotalLine() {
         return totalLine;

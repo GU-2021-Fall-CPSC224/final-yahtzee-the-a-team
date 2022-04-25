@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class LowerScorecard extends Scorecard implements PropertyChangeListener {
+public class LowerScoreCard extends Scorecard implements PropertyChangeListener {
     private final String[] titles = {
             "3 of a kind", "4 of a kind", "Full House", "Sm. Straight", "Lg. Straight", "YAHTZEE",
             "Chance", "Bonus"
@@ -26,7 +26,7 @@ public class LowerScorecard extends Scorecard implements PropertyChangeListener 
             "c", "b"
     };
 
-    public LowerScorecard(GameConfiguration configuration){
+    public LowerScoreCard(GameConfiguration configuration){
         super(configuration);
 
         for(int i = 0; i< titles.length; i++){

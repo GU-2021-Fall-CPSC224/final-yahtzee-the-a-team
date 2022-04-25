@@ -54,10 +54,7 @@ public abstract class Scorecard implements PropertyChangeListener {
         this.pcs.removePropertyChangeListener(listener);
     }
 
-    /**
-     * PropertyChangeListener callback.
-     * @param evt the event triggered.
-     */
+    
     @Override
     public void propertyChange(PropertyChangeEvent evt) { //When a property is changed in a scoreline
         if(evt.getPropertyName().equals("scored")){

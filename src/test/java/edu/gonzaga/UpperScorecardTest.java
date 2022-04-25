@@ -4,12 +4,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class UpperScorecardTest {
+public class UpperScoreCardTest {
     @Test
     void testInitialization(){
         int expected = 0;
 
-        UpperScorecard scorecard = new UpperScorecard(new GameConfiguration());
+        UpperScoreCard scorecard = new UpperScoreCard(new GameConfiguration());
         for(ScorecardLine line : scorecard.getLines()){
             assertEquals(expected, line.getValue());
         }
@@ -22,7 +22,7 @@ public class UpperScorecardTest {
 
         Hand hand = new Hand(new GameConfiguration());
         hand.rollAll();
-        UpperScorecard scorecard = new UpperScorecard(new GameConfiguration());
+        UpperScoreCard scorecard = new UpperScoreCard(new GameConfiguration());
         scorecard.scoreNewHand(hand);
         for(ScorecardLine line : scorecard.getLines()){
             sum += line.getValue();

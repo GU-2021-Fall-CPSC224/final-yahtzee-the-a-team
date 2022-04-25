@@ -49,15 +49,16 @@ public class Die implements Comparable<Die> {
 
     /**
      * Registers a PropertyChangeListener to this class.
+     * 
      * @param listener the listener to register.
      */
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         this.pcs.addPropertyChangeListener(listener);
     }
 
-
     /**
      * Removes a PropertyChangeListener to this class.
+     * 
      * @param listener the listener to remove.
      */
     public void removePropertyChangeListener(PropertyChangeListener listener) {
@@ -65,68 +66,68 @@ public class Die implements Comparable<Die> {
     }
 
     /**
-    * @Author Tyler C
-    * @Date created: 4/20/22;
-    * Date last modified: 4/20/22
-    * @Description locks the die so that it can no longer be rolled
-    * @pre unfired propertyChange event
-    * @post fired propertyChange event for view
-    **/
-    public void lock(){
+     * @Author Tyler C
+     * @Date created: 4/20/22;
+     *       Date last modified: 4/20/22
+     * @Description locks the die so that it can no longer be rolled
+     * @pre unfired propertyChange event
+     * @post fired propertyChange event for view
+     **/
+    public void lock() {
         boolean prev = locked;
         locked = true;
         pcs.firePropertyChange("lock", prev, true);
     }
 
     /**
-    * @Author Tyler C
-    * @Date created: 4/20/22;
-    * Date last modified: 4/20/22
-    * @Description unlocks the die so that it can be rolled again
-    * @pre unfired propertyChange event
-    * @post fired propertyChange event for view
-    **/
-    public void unlock(){
+     * @Author Tyler C
+     * @Date created: 4/20/22;
+     *       Date last modified: 4/20/22
+     * @Description unlocks the die so that it can be rolled again
+     * @pre unfired propertyChange event
+     * @post fired propertyChange event for view
+     **/
+    public void unlock() {
         boolean prev = locked;
         locked = false;
         pcs.firePropertyChange("lock", prev, false);
     }
 
     /**
-    * @Author Tyler C
-    * @Date created: 4/20/22;
-    * Date last modified: 4/20/22
-    * @Description checks if this object (die) is locked and returns status
-    * @return whether this die object is locked
-    **/
-    public boolean isLocked(){
+     * @Author Tyler C
+     * @Date created: 4/20/22;
+     *       Date last modified: 4/20/22
+     * @Description checks if this object (die) is locked and returns status
+     * @return whether this die object is locked
+     **/
+    public boolean isLocked() {
         return locked;
     }
 
     /**
-    * @Author Tyler C
-    * @Date created: 4/20/22;
-    * Date last modified: 4/20/22
-    * @Description rolls die object if it is not locked 
-    * @pre previously set die face value
-    * @post newly set die face values
-    **/
+     * @Author Tyler C
+     * @Date created: 4/20/22;
+     *       Date last modified: 4/20/22
+     * @Description rolls die object if it is not locked
+     * @pre previously set die face value
+     * @post newly set die face values
+     **/
     public void roll() {
-        if(!locked){
+        if (!locked) {
             Random rand = new Random();
             setNewValue(rand.nextInt(this.numSides) + 1);
         }
     }
 
     /**
-    * @Author Tyler C
-    * @Date created: 4/20/22;
-    * Date last modified: 4/20/22
-    * @Description sets this objects sideUp value to a passed value
-    * @param newValue the new value to be this die object's side up
-    * @pre previously set side up face value
-    * @post newly set side up face value
-    **/
+     * @Author Tyler C
+     * @Date created: 4/20/22;
+     *       Date last modified: 4/20/22
+     * @Description sets this objects sideUp value to a passed value
+     * @param newValue the new value to be this die object's side up
+     * @pre previously set side up face value
+     * @post newly set side up face value
+     **/
     private void setNewValue(int newValue) {
         int oldValue = sideUp;
         sideUp = newValue;
@@ -134,54 +135,56 @@ public class Die implements Comparable<Die> {
     }
 
     /**
-    * @Author Tyler C
-    * @Date created: 4/20/22;
-    * Date last modified: 4/20/22
-    * @Description returns current die value (the side that's up).
-    * @return the current sideUp as an Integer
-    **/
+     * @Author Tyler C
+     * @Date created: 4/20/22;
+     *       Date last modified: 4/20/22
+     * @Description returns current die value (the side that's up).
+     * @return the current sideUp as an Integer
+     **/
     public Integer getSideUp() {
         return this.sideUp;
     }
 
     /**
-    * @Author Tyler C
-    * @Date created: 4/20/22;
-    * Date last modified: 4/20/22
-    * @Description returns the number of sides this die object has
-    * @return the current number of sides this object has
-    **/
+     * @Author Tyler C
+     * @Date created: 4/20/22;
+     *       Date last modified: 4/20/22
+     * @Description returns the number of sides this die object has
+     * @return the current number of sides this object has
+     **/
     public Integer getNumSides() {
         return this.numSides;
     }
 
     /**
-    * @Author Tyler C
-    * @Date created: 4/20/22;
-    * Date last modified: 4/20/22
-    * @Description Provides the ability to convert the Die object into a string.
-    *   representation, both with {@link java.lang.Integer#toString()} and with {@link java.io.PrintStream#println(x)}
-    * @return String representation of Die
-    **/
+     * @Author Tyler C
+     * @Date created: 4/20/22;
+     *       Date last modified: 4/20/22
+     * @Description Provides the ability to convert the Die object into a string.
+     *              representation, both with {@link java.lang.Integer#toString()}
+     *              and with {@link java.io.PrintStream#println(x)}
+     * @return String representation of Die
+     **/
     @Override
     public String toString() {
         return this.sideUp.toString();
     }
 
     /**
-    * Makes two dice comparable using <, ==, >, etc. based on sideUp values.
-    *
-    * @param otherDie The die we're comparing to this one (two objects)
-    * @return int -1, 0, 1 for less than, equal, greater than
-    */
-   /**
-   * @Author Tyler C
-   * @Date created: 4/20/22;
-   * Date last modified: 4/20/22
-   * @Description makes two dice comparable using <, ==, >, etc. based on sideUp values. Based upon {@link Comparable#compareTo(Object)}
-   * @param otherDie Another Die object being compared to
-   * @return An Integer (-1 : less than, 0 : equal to, 1 : greater than)
-   **/
+     * Makes two dice comparable using <, ==, >, etc. based on sideUp values.
+     *
+     * @param otherDie The die we're comparing to this one (two objects)
+     * @return int -1, 0, 1 for less than, equal, greater than
+     */
+    /**
+     * @Author Tyler C
+     * @Date created: 4/20/22;
+     *       Date last modified: 4/20/22
+     * @Description makes two dice comparable using <, ==, >, etc. based on sideUp
+     *              values. Based upon {@link Comparable#compareTo(Object)}
+     * @param otherDie Another Die object being compared to
+     * @return An Integer (-1 : less than, 0 : equal to, 1 : greater than)
+     **/
     @Override
     public int compareTo(Die otherDie) {
         return this.sideUp.compareTo(otherDie.sideUp);

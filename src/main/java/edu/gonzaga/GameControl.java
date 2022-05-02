@@ -47,16 +47,16 @@ public class GameControl implements PropertyChangeListener {
             playerDialog.setVisible(true);
 
             names = playerDialog.getPayload();
-            if(!names.isEmpty()) {
+            if (!names.isEmpty()) {
                 players = new ArrayList<>();
-                for(String s : names) {
+                for (String s : names) {
                     players.add(new Player(s, config));
                 }
 
                 playerViews = new ArrayList<>();
 
                 // add propertyChangeListeners to players so they can see if player changes
-                for(Player player : players) {
+                for (Player player : players) {
                     PlayerView playerView = new PlayerView(player);
                     playerView.addPropertyChangeListener(this::propertyChange);
                     playerViews.add(playerView);
@@ -85,7 +85,7 @@ public class GameControl implements PropertyChangeListener {
     /**
      * @Author Tyler CH
      * @Date created: 4/24/22;
-     * Date last modified: 4/24/22
+     *       Date last modified: 4/24/22
      * @Description sets the main view of the screen.
      * @pre previously visible screen in content pane
      * @post invisible previous screen content pane, visible new screen content pane
@@ -97,17 +97,14 @@ public class GameControl implements PropertyChangeListener {
     }
 
     @Override
-    public void propertyChange(PropertyChangeEvent evt)
-    {
+    public void propertyChange(PropertyChangeEvent evt) {
 
-        if(evt.getPropertyName().equals("nextPlayer"))
-        {
-            if(!checkGameEnd()) { //If game not over
+        if (evt.getPropertyName().equals("nextPlayer")) {
+            if (!checkGameEnd()) { // If game not over
                 playerTurn++;
                 startNextPlayerRound();
-            } else { //If game over
-                for(Player player: players)
-                {
+            } else { // If game over
+                for (Player player : players) {
                     player.getUpperScorecard().checkBonus();
                 }
                 setWinnerScreen(findWinner());
@@ -118,7 +115,7 @@ public class GameControl implements PropertyChangeListener {
     /**
      * @Author Tyler CH
      * @Date created: 4/24/22;
-     * Date last modified: 4/24/22
+     *       Date last modified: 4/24/22
      * @Description sets teh screen on a player in winner form.
      * @pre previously visible screen in content pane
      * @post the winner's screen
@@ -132,14 +129,14 @@ public class GameControl implements PropertyChangeListener {
     /**
      * @Author Tyler CH
      * @Date created: 4/24/22;
-     * Date last modified: 4/24/22
+     *       Date last modified: 4/24/22
      * @Description returns the view corresponding to a player
      * @pre
      * @post
      **/
     private PlayerView getPlayerView(Player player) {
-        for(PlayerView view : playerViews) {
-            if(view.getPlayer().equals(player)) {
+        for (PlayerView view : playerViews) {
+            if (view.getPlayer().equals(player)) {
                 return view;
             }
         }
@@ -149,7 +146,7 @@ public class GameControl implements PropertyChangeListener {
     /**
      * @Author Tyler CH
      * @Date created: 4/24/22;
-     * Date last modified: 4/24/22
+     *       Date last modified: 4/24/22
      * @Description determines the player with the highest total of points
      * @pre
      * @post
@@ -157,8 +154,8 @@ public class GameControl implements PropertyChangeListener {
     private Player findWinner() {
         int total = 0;
         Player winner = null;
-        for(Player player : players) {
-            if(player.totalScore() > total) {
+        for (Player player : players) {
+            if (player.totalScore() > total) {
                 winner = player;
                 total = player.totalScore();
             }
@@ -169,38 +166,38 @@ public class GameControl implements PropertyChangeListener {
     /**
      * @Author Tyler CH
      * @Date created: 4/24/22;
-     * Date last modified: 4/24/22
+     *       Date last modified: 4/24/22
      * @Description Checks if an endgame condition has been met
      * @pre
      * @post
      **/
     private boolean checkGameEnd() {
-        return  checkSameTurn() && checkScorecardFull();
+        return checkSameTurn() && checkScorecardFull();
     }
 
     /**
      * @Author Tyler CH
      * @Date created: 4/24/22;
-     * Date last modified: 4/24/22
+     *       Date last modified: 4/24/22
      * @Description Checks if all players have done the same turn.
      * @pre
      * @post
      **/
     private boolean checkSameTurn() {
-        return playerTurn == playerViews.size()-1;
+        return playerTurn == playerViews.size() - 1;
     }
 
     /**
      * @Author Tyler CH
      * @Date created: 4/24/22;
-     * Date last modified: 4/24/22
+     *       Date last modified: 4/24/22
      * @Description Checks if all players scorecards are full
      * @pre
      * @post
      **/
     private boolean checkScorecardFull() {
         boolean result = true;
-        for(Player player : players) {
+        for (Player player : players) {
             result = result && player.isFull();
         }
         return result;

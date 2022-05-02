@@ -26,7 +26,6 @@ public class LowerScorecard extends Scorecard implements PropertyChangeListener 
     public LowerScorecard(GameConfiguration configuration) {
         super(configuration);
 
-        
         // Looping through the array of titles and adding them to the scorecard.
         for (int i = 0; i < titles.length; i++) {
             getLines().add(new ScorecardLine(titles[i], ids[i]));
@@ -46,7 +45,6 @@ public class LowerScorecard extends Scorecard implements PropertyChangeListener 
         LowerSectionScoring scoring = new LowerSectionScoring(hand);
         Map<String, Integer> data = scoring.getSectionData();
 
-        
         // Looping through the array of lines and setting their value to 0
         for (ScorecardLine line : getLines()) {
             if (!line.isScored() && !line.getIdentifier().equals("b")) {
@@ -54,7 +52,8 @@ public class LowerScorecard extends Scorecard implements PropertyChangeListener 
             }
         }
 
-        // Checking if the line with the id of "y" is scored and if the data has a value of "y" that is greater than 0.
+        // Checking if the line with the id of "y" is scored and if the data has a value
+        // of "y" that is greater than 0.
         if (getLine("y").isScored() && data.getOrDefault("y", 0) > 0) {
             ScorecardLine line = getLine("b");
             line.setValueWithEvent(line.getValue() + 100);

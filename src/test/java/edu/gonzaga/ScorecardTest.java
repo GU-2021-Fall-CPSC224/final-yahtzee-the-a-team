@@ -16,10 +16,10 @@ class ScorecardTest {
     }
 
     @Test
-    void testIsFullUpper(){
+    void testIsFullUpper() {
         boolean expectedValue = true;
         Scorecard scorecard = new UpperScorecard(new GameConfiguration());
-        for(ScorecardLine line : scorecard.getLines()){
+        for (ScorecardLine line : scorecard.getLines()) {
             line.score();
         }
         assertEquals(expectedValue, scorecard.isFull());
@@ -30,17 +30,17 @@ class ScorecardTest {
         boolean expectedValue = false;
         Scorecard scorecard = new UpperScorecard(new GameConfiguration());
         ArrayList<ScorecardLine> lines = scorecard.getLines();
-        for(int i = 0; i<lines.size()-1; i++) {
+        for (int i = 0; i < lines.size() - 1; i++) {
             lines.get(i).score();
         }
         assertEquals(expectedValue, scorecard.isFull());
     }
 
     @Test
-    void testIsFullLower(){
+    void testIsFullLower() {
         boolean expectedValue = true;
         Scorecard scorecard = new LowerScorecard(new GameConfiguration());
-        for(ScorecardLine line : scorecard.getLines()) {
+        for (ScorecardLine line : scorecard.getLines()) {
             if (!line.getIdentifier().equals("b")) {
                 line.score();
             }
@@ -53,11 +53,10 @@ class ScorecardTest {
         boolean expectedValue = false;
         Scorecard scorecard = new LowerScorecard(new GameConfiguration());
         ArrayList<ScorecardLine> lines = scorecard.getLines();
-        for(int i = 0; i<lines.size()-2; i++) {
+        for (int i = 0; i < lines.size() - 2; i++) {
             lines.get(i).score();
         }
         assertEquals(expectedValue, scorecard.isFull());
     }
 
 }
-

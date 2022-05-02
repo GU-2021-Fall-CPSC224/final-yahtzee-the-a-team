@@ -100,7 +100,8 @@ public class Hand {
     }
 
     /**
-     * This function unlocks all the dice, rolls them, and then fires a property change event "newturn".
+     * This function unlocks all the dice, rolls them, and then fires a property
+     * change event "newturn".
      */
     public void newTurn() {
         unlockAllDie();

@@ -9,7 +9,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 
-public class PlayerListView extends JPanel{
+public class PlayerListView extends JPanel {
     private JList<String> players;
     private DefaultListModel<String> playersModel;
 
@@ -60,7 +60,7 @@ public class PlayerListView extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 String text = nameField.getText();
-                if(!text.equals("") && !playersModel.contains(text)) {
+                if (!text.equals("") && !playersModel.contains(text)) {
                     playersModel.add(playersModel.size(), text);
                     players.setSelectedIndex(0);
                 }
@@ -122,6 +122,5 @@ public class PlayerListView extends JPanel{
         }
         return players;
     }
-    
-}
 
+}

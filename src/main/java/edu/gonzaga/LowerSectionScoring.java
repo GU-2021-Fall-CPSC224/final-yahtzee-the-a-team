@@ -128,7 +128,8 @@ public class LowerSectionScoring {
     }
 
     /**
-     * It takes a list of integers, and returns the sum of the product of each integer and its index (for chance line)
+     * It takes a list of integers, and returns the sum of the product of each
+     * integer and its index (for chance line)
      */
     private void calculateChance() {
         int sum = 0;

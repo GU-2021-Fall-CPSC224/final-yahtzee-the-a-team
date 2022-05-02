@@ -26,7 +26,6 @@ public class ScorecardLine {
         this(title, "");
     }
 
-
     public ScorecardLine(String title, String identifier) {
         this.identifier = identifier;
         this.value = 0;
@@ -102,7 +101,8 @@ public class ScorecardLine {
     }
 
     /**
-     * If the new {@link ScorecardLine} value is different than the old value, then fire a property change event.
+     * If the new {@link ScorecardLine} value is different than the old value, then
+     * fire a property change event.
      * 
      * @param value The name of the property.
      */

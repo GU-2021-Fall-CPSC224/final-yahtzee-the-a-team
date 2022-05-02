@@ -26,7 +26,7 @@ class DieTest {
         Integer die2Value = 4;
         Die die1 = new Die(6, die1Value);
         Die die2 = new Die(6, die2Value);
-        assertTrue(die1.compareTo(die2) > 0 );
+        assertTrue(die1.compareTo(die2) > 0);
     }
 
     @Test
@@ -35,7 +35,7 @@ class DieTest {
         Integer die2Value = 2;
         Die die1 = new Die(6, die1Value);
         Die die2 = new Die(6, die2Value);
-        assertTrue(die1.compareTo(die2) < 0 );
+        assertTrue(die1.compareTo(die2) < 0);
     }
 
     @Test
@@ -47,4 +47,3 @@ class DieTest {
         assertTrue(die1.compareTo(die2) == 0);
     }
 }
-

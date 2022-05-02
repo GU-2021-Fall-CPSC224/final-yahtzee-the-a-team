@@ -170,12 +170,11 @@ public class Die implements Comparable<Die> {
         return this.sideUp.toString();
     }
 
-    
     @Override
     /**
      * @Author Tyler C
      * @Date created: 4/20/22;
-     *  Date last modified: 4/20/22
+     *       Date last modified: 4/20/22
      * @Description makes two dice comparable using <, ==, >, etc. based on sideUp
      *              values. Based upon {@link Comparable#compareTo(Object)}
      * @param otherDie Another Die object being compared to

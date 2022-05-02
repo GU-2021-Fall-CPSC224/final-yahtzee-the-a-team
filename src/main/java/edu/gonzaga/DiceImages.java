@@ -28,7 +28,6 @@ public class DiceImages {
         }
     }
 
-    
     public DiceImages(String imagesPath) {
         images = new ArrayList<>(12);
         loadImages(imagesPath);

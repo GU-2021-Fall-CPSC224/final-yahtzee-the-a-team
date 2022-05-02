@@ -17,44 +17,44 @@ public class LowerScorecardTest {
             "3k", "4k", "fh", "ss", "ls", "y",
             "c", "b"
     };
-    
+
     @Test
-    void testNameInit(){
+    void testNameInit() {
         LowerScorecard scorecard = new LowerScorecard(new GameConfiguration());
         ArrayList<ScorecardLine> lines = scorecard.getLines();
-        for(int i = 0; i<titles.length; i++){
+        for (int i = 0; i < titles.length; i++) {
             assertEquals(titles[i], lines.get(i).getTitle());
         }
     }
 
     @Test
-    void testIdInit(){
+    void testIdInit() {
         LowerScorecard scorecard = new LowerScorecard(new GameConfiguration());
         ArrayList<ScorecardLine> lines = scorecard.getLines();
-        for(int i = 0; i<ids.length; i++){
+        for (int i = 0; i < ids.length; i++) {
             assertEquals(ids[i], lines.get(i).getIdentifier());
         }
     }
 
     @Test
-    void testValueInit(){
+    void testValueInit() {
         int expected = 0;
 
         LowerScorecard scorecard = new LowerScorecard(new GameConfiguration());
         ArrayList<ScorecardLine> lines = scorecard.getLines();
-        for(int i = 0; i<lines.size(); i++){
+        for (int i = 0; i < lines.size(); i++) {
             assertEquals(expected, lines.get(i).getValue());
         }
     }
 
     @Test
-    void testScoreNewHand(){
+    void testScoreNewHand() {
         Hand hand = new Hand(new GameConfiguration());
 
     }
 
     @Test
-    void testThreeOfAKind(){
+    void testThreeOfAKind() {
         int expectedValue = 120;
         int dieSides = 30;
         int handSize = 10;
@@ -63,16 +63,16 @@ public class LowerScorecardTest {
 
         Hand hand = new Hand(config);
         List<Die> dice = new ArrayList<>();
-        dice.add(new Die(dieSides,1));
-        dice.add(new Die(dieSides,1));
-        dice.add(new Die(dieSides,5));
-        dice.add(new Die(dieSides,5));
-        dice.add(new Die(dieSides,9));
-        dice.add(new Die(dieSides,10));
-        dice.add(new Die(dieSides,20));
-        dice.add(new Die(dieSides,20));
-        dice.add(new Die(dieSides,20));
-        dice.add(new Die(dieSides,29));
+        dice.add(new Die(dieSides, 1));
+        dice.add(new Die(dieSides, 1));
+        dice.add(new Die(dieSides, 5));
+        dice.add(new Die(dieSides, 5));
+        dice.add(new Die(dieSides, 9));
+        dice.add(new Die(dieSides, 10));
+        dice.add(new Die(dieSides, 20));
+        dice.add(new Die(dieSides, 20));
+        dice.add(new Die(dieSides, 20));
+        dice.add(new Die(dieSides, 29));
         hand.setHand(dice);
         LowerScorecard card = new LowerScorecard(config);
         card.scoreNewHand(hand);
@@ -80,7 +80,7 @@ public class LowerScorecardTest {
     }
 
     @Test
-    void testFourOfAKind(){
+    void testFourOfAKind() {
         int expectedValue = 90;
         int dieSides = 30;
         int handSize = 10;
@@ -89,16 +89,16 @@ public class LowerScorecardTest {
 
         Hand hand = new Hand(config);
         List<Die> dice = new ArrayList<>();
-        dice.add(new Die(dieSides,1));
-        dice.add(new Die(dieSides,1));
-        dice.add(new Die(dieSides,5));
-        dice.add(new Die(dieSides,5));
-        dice.add(new Die(dieSides,9));
-        dice.add(new Die(dieSides,10));
-        dice.add(new Die(dieSides,10));
-        dice.add(new Die(dieSides,10));
-        dice.add(new Die(dieSides,10));
-        dice.add(new Die(dieSides,29));
+        dice.add(new Die(dieSides, 1));
+        dice.add(new Die(dieSides, 1));
+        dice.add(new Die(dieSides, 5));
+        dice.add(new Die(dieSides, 5));
+        dice.add(new Die(dieSides, 9));
+        dice.add(new Die(dieSides, 10));
+        dice.add(new Die(dieSides, 10));
+        dice.add(new Die(dieSides, 10));
+        dice.add(new Die(dieSides, 10));
+        dice.add(new Die(dieSides, 29));
         hand.setHand(dice);
         LowerScorecard card = new LowerScorecard(config);
         card.scoreNewHand(hand);
@@ -107,7 +107,7 @@ public class LowerScorecardTest {
     }
 
     @Test
-    void testYahtzee(){
+    void testYahtzee() {
         int expectedValue = 91;
         int expectedYValue = 50;
         int dieSides = 30;
@@ -117,16 +117,16 @@ public class LowerScorecardTest {
 
         Hand hand = new Hand(config);
         List<Die> dice = new ArrayList<>();
-        dice.add(new Die(dieSides,1));
-        dice.add(new Die(dieSides,1));
-        dice.add(new Die(dieSides,5));
-        dice.add(new Die(dieSides,5));
-        dice.add(new Die(dieSides,10));
-        dice.add(new Die(dieSides,10));
-        dice.add(new Die(dieSides,10));
-        dice.add(new Die(dieSides,10));
-        dice.add(new Die(dieSides,10));
-        dice.add(new Die(dieSides,29));
+        dice.add(new Die(dieSides, 1));
+        dice.add(new Die(dieSides, 1));
+        dice.add(new Die(dieSides, 5));
+        dice.add(new Die(dieSides, 5));
+        dice.add(new Die(dieSides, 10));
+        dice.add(new Die(dieSides, 10));
+        dice.add(new Die(dieSides, 10));
+        dice.add(new Die(dieSides, 10));
+        dice.add(new Die(dieSides, 10));
+        dice.add(new Die(dieSides, 29));
         hand.setHand(dice);
         LowerScorecard card = new LowerScorecard(config);
         card.scoreNewHand(hand);
@@ -136,7 +136,7 @@ public class LowerScorecardTest {
     }
 
     @Test
-    void testFullHouse(){
+    void testFullHouse() {
         int expectedValue = 25;
         int dieSides = 30;
         int handSize = 10;
@@ -145,16 +145,16 @@ public class LowerScorecardTest {
 
         Hand hand = new Hand(config);
         List<Die> dice = new ArrayList<>();
-        dice.add(new Die(dieSides,1));
-        dice.add(new Die(dieSides,2));
-        dice.add(new Die(dieSides,5));
-        dice.add(new Die(dieSides,5));
-        dice.add(new Die(dieSides,7));
-        dice.add(new Die(dieSides,10));
-        dice.add(new Die(dieSides,10));
-        dice.add(new Die(dieSides,10));
-        dice.add(new Die(dieSides,21));
-        dice.add(new Die(dieSides,29));
+        dice.add(new Die(dieSides, 1));
+        dice.add(new Die(dieSides, 2));
+        dice.add(new Die(dieSides, 5));
+        dice.add(new Die(dieSides, 5));
+        dice.add(new Die(dieSides, 7));
+        dice.add(new Die(dieSides, 10));
+        dice.add(new Die(dieSides, 10));
+        dice.add(new Die(dieSides, 10));
+        dice.add(new Die(dieSides, 21));
+        dice.add(new Die(dieSides, 29));
         hand.setHand(dice);
         LowerScorecard card = new LowerScorecard(config);
         card.scoreNewHand(hand);
@@ -162,7 +162,7 @@ public class LowerScorecardTest {
     }
 
     @Test
-    void testSmallStraight(){
+    void testSmallStraight() {
         int expectedValue = 30;
         int dieSides = 30;
         int handSize = 10;
@@ -171,16 +171,16 @@ public class LowerScorecardTest {
 
         Hand hand = new Hand(config);
         List<Die> dice = new ArrayList<>();
-        dice.add(new Die(dieSides,1));
-        dice.add(new Die(dieSides,1));
-        dice.add(new Die(dieSides,7));
-        dice.add(new Die(dieSides,8));
-        dice.add(new Die(dieSides,9));
-        dice.add(new Die(dieSides,10));
-        dice.add(new Die(dieSides,12));
-        dice.add(new Die(dieSides,20));
-        dice.add(new Die(dieSides,20));
-        dice.add(new Die(dieSides,29));
+        dice.add(new Die(dieSides, 1));
+        dice.add(new Die(dieSides, 1));
+        dice.add(new Die(dieSides, 7));
+        dice.add(new Die(dieSides, 8));
+        dice.add(new Die(dieSides, 9));
+        dice.add(new Die(dieSides, 10));
+        dice.add(new Die(dieSides, 12));
+        dice.add(new Die(dieSides, 20));
+        dice.add(new Die(dieSides, 20));
+        dice.add(new Die(dieSides, 29));
         hand.setHand(dice);
         LowerScorecard card = new LowerScorecard(config);
         card.scoreNewHand(hand);
@@ -188,7 +188,7 @@ public class LowerScorecardTest {
     }
 
     @Test
-    void testLargeStraight(){
+    void testLargeStraight() {
         int expectedValueSmall = 30;
         int expectedValueLarge = 40;
         int dieSides = 30;
@@ -198,16 +198,16 @@ public class LowerScorecardTest {
 
         Hand hand = new Hand(config);
         List<Die> dice = new ArrayList<>();
-        dice.add(new Die(dieSides,1));
-        dice.add(new Die(dieSides,1));
-        dice.add(new Die(dieSides,7));
-        dice.add(new Die(dieSides,8));
-        dice.add(new Die(dieSides,9));
-        dice.add(new Die(dieSides,10));
-        dice.add(new Die(dieSides,11));
-        dice.add(new Die(dieSides,20));
-        dice.add(new Die(dieSides,20));
-        dice.add(new Die(dieSides,29));
+        dice.add(new Die(dieSides, 1));
+        dice.add(new Die(dieSides, 1));
+        dice.add(new Die(dieSides, 7));
+        dice.add(new Die(dieSides, 8));
+        dice.add(new Die(dieSides, 9));
+        dice.add(new Die(dieSides, 10));
+        dice.add(new Die(dieSides, 11));
+        dice.add(new Die(dieSides, 20));
+        dice.add(new Die(dieSides, 20));
+        dice.add(new Die(dieSides, 29));
         hand.setHand(dice);
         LowerScorecard card = new LowerScorecard(config);
         card.scoreNewHand(hand);
@@ -216,7 +216,7 @@ public class LowerScorecardTest {
     }
 
     @Test
-    void testBonus(){
+    void testBonus() {
         int expectedValue = 200;
         int dieSides = 30;
         int handSize = 10;
@@ -225,16 +225,16 @@ public class LowerScorecardTest {
 
         Hand hand = new Hand(config);
         List<Die> dice = new ArrayList<>();
-        dice.add(new Die(dieSides,1));
-        dice.add(new Die(dieSides,1));
-        dice.add(new Die(dieSides,5));
-        dice.add(new Die(dieSides,5));
-        dice.add(new Die(dieSides,10));
-        dice.add(new Die(dieSides,10));
-        dice.add(new Die(dieSides,10));
-        dice.add(new Die(dieSides,10));
-        dice.add(new Die(dieSides,10));
-        dice.add(new Die(dieSides,29));
+        dice.add(new Die(dieSides, 1));
+        dice.add(new Die(dieSides, 1));
+        dice.add(new Die(dieSides, 5));
+        dice.add(new Die(dieSides, 5));
+        dice.add(new Die(dieSides, 10));
+        dice.add(new Die(dieSides, 10));
+        dice.add(new Die(dieSides, 10));
+        dice.add(new Die(dieSides, 10));
+        dice.add(new Die(dieSides, 10));
+        dice.add(new Die(dieSides, 29));
         hand.setHand(dice);
         LowerScorecard card = new LowerScorecard(config);
         card.scoreNewHand(hand);

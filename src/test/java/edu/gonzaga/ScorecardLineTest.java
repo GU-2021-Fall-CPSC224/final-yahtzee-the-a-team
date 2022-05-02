@@ -14,7 +14,7 @@ public class ScorecardLineTest implements PropertyChangeListener {
     private boolean triggered;
 
     @Test
-    void testScore(){
+    void testScore() {
         boolean expected = true;
         ScorecardLine line = new ScorecardLine("Aces");
         line.score();
@@ -22,7 +22,7 @@ public class ScorecardLineTest implements PropertyChangeListener {
     }
 
     @Test
-    void testPropertyChangeListener(){
+    void testPropertyChangeListener() {
         boolean expected = true;
         triggered = false;
         ScorecardLine line = new ScorecardLine("Aces");
@@ -34,13 +34,13 @@ public class ScorecardLineTest implements PropertyChangeListener {
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        if(evt.getPropertyName().equals("scored")){
+        if (evt.getPropertyName().equals("scored")) {
             triggered = true;
         }
     }
 
     @Test
-    void testExceptionThrow(){
+    void testExceptionThrow() {
         ScorecardLine line = new ScorecardLine("Aces");
         line.score();
         assertThrows(IllegalStateException.class, new Executable() {

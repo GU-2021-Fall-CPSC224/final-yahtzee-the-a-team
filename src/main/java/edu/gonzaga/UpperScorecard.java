@@ -29,6 +29,7 @@ public class UpperScorecard extends Scorecard {
         }
     }
 
+
     /**
      * If the line is not scored, set the value of the line to the value of the new
      * score at the index of
@@ -48,5 +49,15 @@ public class UpperScorecard extends Scorecard {
                 getLines().get(i).setValue(data.get(i));
             }
         }
+    }
+    public Integer checkBonus(){
+
+        Integer newTotal = 0;
+        newTotal = getTotalLine().getValue();
+        if (newTotal >= 60){
+            newTotal += 35;
+        }
+        return newTotal;
+
     }
 }

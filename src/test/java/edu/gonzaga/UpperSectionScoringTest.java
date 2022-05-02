@@ -23,5 +23,17 @@ class UpperSectionScoringTest {
         UpperSectionScoring score = new UpperSectionScoring(hand);
         assertEquals(expectedValue, score.getSectionData().get(5));
     }
+    @Test
+    void testAdding35(){
+        int expectedValue = 100;
+        Hand hand = new Hand(5, 4, 3);
+        ScorecardLine test = new ScorecardLine("test");
+        UpperScorecard card = new UpperScorecard(new GameConfiguration());
+        card.setTotalLine(65);
+
+        UpperSectionScoring score = new UpperSectionScoring(hand);
+        test.setValue(score.Add35(card));
+        assertEquals(expectedValue, test.getValue());
+    }
 }
 

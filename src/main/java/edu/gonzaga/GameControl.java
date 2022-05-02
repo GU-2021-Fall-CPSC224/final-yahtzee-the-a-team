@@ -99,12 +99,17 @@ public class GameControl implements PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent evt)
     {
+
         if(evt.getPropertyName().equals("nextPlayer"))
         {
             if(!checkGameEnd()) { //If game not over
                 playerTurn++;
                 startNextPlayerRound();
             } else { //If game over
+                for(Player player: players)
+                {
+                    player.getUpperScorecard().checkBonus();
+                }
                 setWinnerScreen(findWinner());
             }
         }

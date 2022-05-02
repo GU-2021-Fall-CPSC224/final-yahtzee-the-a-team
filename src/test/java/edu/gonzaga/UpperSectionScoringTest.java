@@ -12,7 +12,7 @@ class UpperSectionScoringTest {
     void testLine6() {
         int expectedValue = 30;
         int dieSides = 6;
-        Hand hand = new Hand(5,dieSides,3);
+        Hand hand = new Hand(5, dieSides, 3);
         List<Die> dice = new ArrayList<>();
         dice.add(new Die(dieSides, 6));
         dice.add(new Die(dieSides, 6));
@@ -25,4 +25,3 @@ class UpperSectionScoringTest {
     }
 
 }
-

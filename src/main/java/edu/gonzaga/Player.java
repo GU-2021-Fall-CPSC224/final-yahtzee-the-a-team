@@ -134,7 +134,7 @@ public class Player implements PropertyChangeListener {
     /**
      * @Author Tyler CH
      * @Date created: 4/24/22;
-     * Date last modified: 4/24/22
+     *       Date last modified: 4/24/22
      * @Description returns if the players scorecard is full or not.
      * @pre
      * @post
@@ -146,7 +146,7 @@ public class Player implements PropertyChangeListener {
     /**
      * @Author Tyler CH
      * @Date created: 4/24/22;
-     * Date last modified: 4/24/22
+     *       Date last modified: 4/24/22
      * @Description returns the combined upper and lower scorecard of this player.2
      * @pre
      * @post

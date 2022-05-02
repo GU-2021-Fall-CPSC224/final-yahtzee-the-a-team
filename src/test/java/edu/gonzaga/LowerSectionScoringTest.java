@@ -12,7 +12,7 @@ class LowerSectionScoringTest {
     void testYahtzeeScoring() {
         int expectedValue = 50;
         int dieSides = 6;
-        Hand hand = new Hand(5,dieSides,3);
+        Hand hand = new Hand(5, dieSides, 3);
         List<Die> dice = new ArrayList<>();
         dice.add(new Die(dieSides, 6));
         dice.add(new Die(dieSides, 6));
@@ -24,4 +24,3 @@ class LowerSectionScoringTest {
         assertEquals(expectedValue, score.getSectionData().get("y"));
     }
 }
-

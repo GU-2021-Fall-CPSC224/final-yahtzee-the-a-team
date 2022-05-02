@@ -81,12 +81,12 @@ public class PlayerView extends JPanel implements PropertyChangeListener {
      * @param evt the event that was triggered.
      */
     @Override
-    public void propertyChange(PropertyChangeEvent evt) { //Advance turn.
-        if(evt.getPropertyName().equals("scored")) {
+    public void propertyChange(PropertyChangeEvent evt) { // Advance turn.
+        if (evt.getPropertyName().equals("scored")) {
             this.pcs.firePropertyChange("nextPlayer", false, true);
             scoringDialog.setVisible(false);
             player.newTurn();
-            if(!turnLabel.getText().contains("GAME OVER!")) {
+            if (!turnLabel.getText().contains("GAME OVER!")) {
                 turnLabel.setText("Turn: " + player.getTurn());
             }
             handView.getRollButton().setEnabled(true);
@@ -101,7 +101,7 @@ public class PlayerView extends JPanel implements PropertyChangeListener {
     /**
      * @Author Tyler CH
      * @Date created: 4/24/22;
-     * Date last modified: 4/24/22
+     *       Date last modified: 4/24/22
      * @Description returns the player that this view models
      * @pre
      * @post
@@ -156,14 +156,14 @@ public class PlayerView extends JPanel implements PropertyChangeListener {
     /**
      * @Author Tyler CH
      * @Date created: 4/24/22;
-     * Date last modified: 4/24/22
+     *       Date last modified: 4/24/22
      * @Description Sets this view to the form of a winnner view.
      * @pre
      * @post
      **/
     public void setWinnerView() {
         nameLabel.setVisible(false);
-        turnLabel.setText("GAME OVER! " + player.getName() + " wins!" );
+        turnLabel.setText("GAME OVER! " + player.getName() + " wins!");
         totalLabel.getComponent().setBackground(Color.green);
         handView.getRollButton().setEnabled(false);
         scoreButton.setEnabled(false);

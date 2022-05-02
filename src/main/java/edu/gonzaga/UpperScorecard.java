@@ -29,7 +29,6 @@ public class UpperScorecard extends Scorecard {
         }
     }
 
-
     /**
      * If the line is not scored, set the value of the line to the value of the new
      * score at the index of
@@ -43,18 +42,20 @@ public class UpperScorecard extends Scorecard {
         List<Integer> data = scoring.getSectionData();
 
         // Iterates through the data list. If the line is not scored, then
-        // the value of the line is set to the value of the new score at the index of the line.
+        // the value of the line is set to the value of the new score at the index of
+        // the line.
         for (int i = 0; i < data.size(); i++) {
             if (!getLines().get(i).isScored()) {
                 getLines().get(i).setValue(data.get(i));
             }
         }
     }
-    public Integer checkBonus(){
+
+    public Integer checkBonus() {
 
         Integer newTotal = 0;
         newTotal = getTotalLine().getValue();
-        if (newTotal >= 60){
+        if (newTotal >= 60) {
             newTotal += 35;
         }
         return newTotal;

@@ -26,6 +26,7 @@ public class ScorecardLine {
         this(title, "");
     }
 
+
     public ScorecardLine(String title, String identifier) {
         this.identifier = identifier;
         this.value = 0;

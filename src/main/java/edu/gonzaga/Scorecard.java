@@ -32,6 +32,7 @@ public abstract class Scorecard implements PropertyChangeListener {
         totalLine = new ScorecardLine("TOTAL");
     }
 
+
     protected Scorecard(GameConfiguration configuration) {
         this();
         this.configuration = configuration;
@@ -142,6 +143,7 @@ public abstract class Scorecard implements PropertyChangeListener {
 
         totalLine.setValueWithEvent(sum);
         pcs.firePropertyChange("total", old, sum);
+
     }
 
     /**
@@ -158,4 +160,10 @@ public abstract class Scorecard implements PropertyChangeListener {
     public ScorecardLine getTotalLine() {
         return totalLine;
     }
+    public ScorecardLine setTotalLine(Integer number)
+    {
+        totalLine.setValue(number);
+        return  totalLine;
+    }
+
 }

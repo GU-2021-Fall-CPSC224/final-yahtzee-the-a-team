@@ -29,4 +29,16 @@ public class UpperScorecardTest {
         }
         assertEquals(expected, sum>0);
     }
+    @Test
+    void checkBonusTest(){
+        int expectedValue = 100;
+        Hand hand = new Hand(5, 4, 3);
+        ScorecardLine test = new ScorecardLine("test");
+        UpperScorecard card = new UpperScorecard(new GameConfiguration());
+        card.setTotalLine(65);
+
+        UpperSectionScoring score = new UpperSectionScoring(hand);
+        test.setValue(card.checkBonus());
+        assertEquals(expectedValue, test.getValue());
+    }
 }
